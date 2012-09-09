@@ -1,0 +1,16 @@
+digraph hierarchy_of_D {
+
+node [color=Green,fontcolor=Blue,font=Courier]
+
+ B -> D
+ C -> D
+
+ {rank=same; B C }
+
+ A -> B
+
+ A -> C
+
+ object -> A
+
+}

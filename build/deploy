@@ -1,0 +1,3 @@
+#/bin/sh
+cp -r src/* /home/andy/usr/basex/webapp/
+echo copied to /home/andy/usr/basex/webapp/

@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/apb/haveli/svn/!svn/ver/22/trunk/dotml
+END
+filters.svg
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/apb/haveli/svn/!svn/ver/22/trunk/dotml/filters.svg
+END
+dotpatch.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/apb/haveli/svn/!svn/ver/22/trunk/dotml/dotpatch.xsl
+END
+dotml2dot.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/apb/haveli/svn/!svn/ver/22/trunk/dotml/dotml2dot.xsl
+END

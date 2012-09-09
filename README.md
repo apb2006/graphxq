@@ -1,4 +1,4 @@
-graphxq
-=======
+# graphxq - interface to graphviz for BaseX 7.5
 
-Basex restxq interface for Graphviz
+* includes dotML 
+* BaseX RestXQ interface
