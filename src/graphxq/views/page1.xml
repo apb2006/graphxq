@@ -1,0 +1,35 @@
+
+<div>
+		<h1>RestXQ interface to graphviz</h1>
+		<p>Enter a string in the dot language 
+		Examples: <a href="?dot=digraph {{ a -> b}}">digraph {{ a -> b}}</a>,
+                  <a href="?hedge={{github|https://github.com/apb2006/hedgetree}}(ab({{tree|%23treexml}}))">another </a>
+		.</p>
+		<p> Or enter a Url to a xml document examples:
+		<a href="?url=graphxq/samples/process.dot">process</a>,
+	<a href="?">hedgeweb</a>
+	<a href="?url=https://raw.github.com/apb2006/hedgetree/master/src/hedgetree/samples/hedgeweb.xml">remote</a>
+		  </p>
+		 <form method="get" action="." style="background-color:#EEEEEE;padding:8px;">
+		 
+		  	      
+		 <textarea name="dot" rows="2" cols="80">{$dot}</textarea>
+		 <p></p>
+		  <p>Or enter the url to a node XML source
+		 <input name="url"  value="{$url}" style="width:30em"/></p>
+		 <button type="submit">Redraw</button>
+		</form >
+		   <h2 id="isvg">Inline SVG</h2>
+		 <div style="width:300px;height:200px">{$svg}</div>
+		 
+		<h2 id="svg">Object referencing <a href="svg?dot={$edot}&amp;url={$url}">svg</a>, 
+		( <a href="svg?dl=1&amp;dot={$edot}&amp;url={$url}">download</a> svg)</h2>
+		<object height="150" width="300" data="svg?dot={$edot}&amp;url={$url}" 
+		style="border:5px solid red;" type="image/svg+xml">
+		SVG Here
+		</object>
+		<h2 id="svgxml">SVG xml</h2>
+		<pre>
+		 {fn:serialize($svg)}
+		 </pre>
+</div>

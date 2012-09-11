@@ -18,9 +18,9 @@ declare %private variable $gr:dotpath:=if(fn:environment-variable("DOTPATH"))
 (:~
 : folder for temp files
 :)
-declare %private variable $gr:tmpdir:=if(fn:environment-variable("TEMP"))
-                                      then fn:environment-variable("TEMP")
-                                      else "/tmp";
+declare %private variable $gr:tmpdir:=if(file:dir-separator()="\")
+                                      then fn:environment-variable("TEMP") || "\"
+                                      else "/tmp/";
                                       
 declare %private variable $gr:empty:=
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 20" version="1.1" 
@@ -39,11 +39,11 @@ declare function dot( $dot as xs:string*, $params as xs:string*) as node()*{
 };
 
 declare %private function dot1( $dot as xs:string) as node(){
-    let $fname:=$gr:tmpdir || file:dir-separator() || random:uuid()
+    let $fname:=$gr:tmpdir || random:uuid()
     let $junk:=file:write-text($fname,$dot)
     let $r:=proc:execute($gr:dotpath , ("-Tsvg",$fname))
     let $junk:=file:delete($fname)
-    
+   (: let $r:=fn:trace($r,"hhi"):)
     return if($r/code="0")       
            then fn:parse-xml($r/output)
            else fn:error()

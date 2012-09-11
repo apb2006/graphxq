@@ -1,0 +1,13 @@
+<div class="row-fluid" style="heigth:20em">
+	<div class="span5">
+		<form method="post" action="." style="background-color:#EEEEEE;padding:8px;">
+
+			<textarea name="dot" rows="2" cols="80"></textarea>
+    
+			<button type="submit">Redraw</button>
+		</form >
+	</div>
+	<div class="span5">
+<div style="width:100%;height:100%;border:5px solid red;">?</div>
+	</div>
+</div>

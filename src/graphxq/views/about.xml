@@ -1,0 +1,44 @@
+<div>
+<div class="page-header">
+    <h1>About GraphXQ</h1>
+	<p>
+		This application provides a web interface to <a href="http://www.graphviz.org/">Graphviz</a>.
+		It uses the <a href="http://basex.org" target="_blank">BaseX</a> <a
+			href="http://docs.basex.org/wiki/RESTXQ" target="_blank">RestXQ</a>
+		implementation which allows the use of XQuery annotations to specify
+		web server behavior.
+	</p>
+	<p>
+		This product includes DOTML developed by Martin Loetzsch 
+   (<a href="http://www.martin-loetzsch.de/DOTML">http://www.martin-loetzsch.de/DOTML</a>).
+   DotML is a XML based syntax for the input language of the 'Dot' graph drawing tool from the AT&amp;T GraphViz suite. It can be transformed to the native syntax of the 'Dot' tool using XSLT. 
+	</p>
+	<p>Twitter <a href="http://twitter.github.com/bootstrap/index.html"
+			target="_blank">bootstrap</a> is used for the client side styling.
+	</p>
+	<p>
+      keith-wood's <a href="http://keith-wood.name/svg.html">jQuery SVG</a> is used for SVG DOM handling.
+      </p>
+	</div>
+	<ul class="quick-links">
+	<!-- 
+		<li><iframe class="github-btn"
+				src="http://markdotto.github.com/github-buttons/github-btn.html?user=apb2006&amp;repo=xqwebdoc&amp;type=watch&amp;count=true"
+				allowtransparency="true" scrolling="0" width="112px" frameborder="0"
+				height="20px"></iframe></li>
+		<li><iframe class="github-btn"
+				src="http://markdotto.github.com/github-buttons/github-btn.html?user=apb2006&amp;repo=xqwebdoc&amp;type=fork&amp;count=true"
+				allowtransparency="true" scrolling="0" width="98px" frameborder="0"
+				height="20px"></iframe></li>
+		 -->		
+		<li class="follow-btn"><iframe title="Twitter Follow Button"
+				style="width: 237px; height: 20px;" class="twitter-follow-button"
+				src="http://platform.twitter.com/widgets/follow_button.html?id=twitter-widget-2&amp;lang=en&amp;screen_name=apb1704&amp;show_count=true&amp;show_screen_name=true&amp;size=m"
+				allowtransparency="true" scrolling="no" frameborder="0"></iframe></li>
+		<li class="tweet-btn"><iframe title="Twitter Tweet Button"
+				style="width: 106px; height: 20px;"
+				class="twitter-share-button twitter-count-horizontal"
+				src="http://platform.twitter.com/widgets/tweet_button.html?count=horizontal&amp;id=twitter-widget-0&amp;lang=en&amp;original_referer=https%3A%2F%2Fgithub.com%2Fapb2006%2Fxqwebdoc%2F&amp;size=m&amp;text=xqwebdoc #xquery&amp;url=https%3A%2F%2Fgithub.com%2Fapb2006%2Fxqwebdoc&amp;via=apb1704"
+				allowtransparency="true" scrolling="no" frameborder="0"></iframe></li>
+	</ul>
+</div>
