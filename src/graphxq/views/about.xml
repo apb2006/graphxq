@@ -9,16 +9,14 @@
 		web server behavior.
 	</p>
 	<p>
-		This product includes DOTML developed by Martin Loetzsch 
+		This application includes DOTML developed by Martin Loetzsch 
    (<a href="http://www.martin-loetzsch.de/DOTML">http://www.martin-loetzsch.de/DOTML</a>).
    DotML is a XML based syntax for the input language of the 'Dot' graph drawing tool from the AT&amp;T GraphViz suite. It can be transformed to the native syntax of the 'Dot' tool using XSLT. 
 	</p>
 	<p>Twitter <a href="http://twitter.github.com/bootstrap/index.html"
-			target="_blank">bootstrap</a> is used for the client side styling.
+			target="_blank">Bootstrap</a> is used for the client side styling.
 	</p>
-	<p>
-      keith-wood's <a href="http://keith-wood.name/svg.html">jQuery SVG</a> is used for SVG DOM handling.
-      </p>
+
 	</div>
 	<ul class="quick-links">
 	<!-- 
