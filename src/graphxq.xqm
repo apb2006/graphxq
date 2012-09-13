@@ -8,6 +8,7 @@ module namespace grxq = 'apb.graphviz.web';
 declare default function namespace 'apb.graphviz.web'; 
 
 import module namespace gr = 'apb.graphviz' at "graphxq/graphviz.xqm";
+import module namespace dotui = 'apb.graphxq.dotui' at "graphxq/dotui.xqm";
 import module namespace txq = 'apb.txq' at "graphxq/lib/txq.xqm";
 import module namespace request = "http://exquery.org/ns/request";
 declare namespace rest = 'http://exquery.org/ns/restxq';
@@ -28,13 +29,15 @@ function graphxq($dot,$url) {
 	 return $page
 };
 
-(:~ 
+(:~
+: return svg for dot, with download option  
 :)
 declare 
 %rest:path("graphxq/svg")
 %rest:form-param("dot","{$dot}")
 %rest:form-param("url","{$url}")  
 %rest:form-param("dl","{$dl}")
+%output:media-type("image/svg+xml")
 function graphxq-svg($dot,$url,$dl) {
 	let $dot2:=getdot($dot,$url)
 	let $svg:=get-svg($dot2)
@@ -50,7 +53,9 @@ declare
 %rest:GET %rest:path("graphxq/dot")
 %output:method("html5")
 function dotform(){
-	render("graphxq/views/dotform.xml",map{})
+	let $map:=map{"list-shapes":=dotui:shapes(""),
+	              "list-colors":=dotui:colors("")}
+	return render("graphxq/views/dotform.xml",$map)
 };
 
 declare 
@@ -59,6 +64,7 @@ declare
 function dotmlform(){
 	render("graphxq/views/dotmlform.xml",map{})
 };
+
 declare 
 %rest:GET %rest:path("graphxq/about")
 %output:method("html5")
@@ -82,7 +88,8 @@ declare %private function getdot($dot,$url) as xs:string{
     try{fn:unparsed-text(fn:resolve-uri($url))} catch * { "digraph {{ failed to load remote }}" }
 else    
     $dot         
-}; 
+};
+ 
 (:~  post process svg :)
 declare %private function get-svg($dot as xs:string) as node(){
     let $svgx:=gr:dot($dot,())

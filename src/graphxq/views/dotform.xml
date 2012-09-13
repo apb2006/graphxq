@@ -1,9 +1,10 @@
 <div class="row-fluid" style="height:20em">
-     <div class="span5">
+     <div class="span6">
      
 	 <ul class="nav nav-tabs">
 		<li class="active"><a href="#tab-dot" data-toggle="tab">Dot</a></li>
 		<li><a href="#tab-defaults" data-toggle="tab">Defaults</a></li>
+		<li><a href="#tab-xml" data-toggle="tab">Raw XML</a></li>
     </ul>
 	<div class="tab-content">
 <div class="tab-pane active" id="tab-dot"> 
@@ -13,14 +14,50 @@
 		 <button id="bndn"  class="btn btn-mini"><i class="icon-download-alt"></i>download</button>
 	 </div>
 		<form  id="dotForm" action= "svg" method="post" target="_new" class="well"> 
-		    digraph "<input type="text" name="title" placeholder="title"/>"{{
-			<textarea id="dot" name="dot" rows="2"  style="min-height:20em">digraph {{ a -> b}}</textarea>}}
+		    <label>digraph "
+			<input type="text" name="title" placeholder="title" class="input-small" />"{{
+			</label>
+			
+			<textarea id="dot" name="dot" rows="2"  style="width:94%;min-height:20em">digraph {{ a -> b}}</textarea>}}
+			 <label class="checkbox">
+				<input name="dl" type="checkbox"/> Download
+			 </label>
 		</form >
       </div>
-	   <div class="tab-pane" id="tab-defaults">...</div>
+      
+	   <div class="tab-pane well" id="tab-defaults">
+	   <form id="frm-defaults" class="form-table">
+	  <label>Title:<input type="text" value="" name="dotTitle" size="15"/></label>
+	
+	<label>RankDir:
+	<select name="rankdir" >
+		<option value="rankdir=TB;" selected="selected" >TB (top -> bottom)</option>
+		<option value="rankdir=LR;">LR (left -> right)</option>
+	</select>
+	</label>
+	 
+	<label>Default Shape:<select name="shape"  >{$list-shapes}</select></label>
+	<label>Color:<select id="lstColors" width="10">{$list-colors}</select></label>
+	 
+	<label>Background:<select name="bgcolor" >{$list-colors}</select></label>
+	<label>Filter:<select name="filter"  >
+			<option value="Bumpy"  >Bumpy</option>
+			<option value="" selected="selected" >(None)</option>
+			<option value="grey_bevel_shadow">grey_bevel_shadow</option>
+			<option value="Bevel">Bevel</option>
+			<option value="MyFilter" >MyFilter</option>
+			<option value="MyShadow">MyShadow</option>
+	</select></label>
+</form>
+
+	   
+	   </div>
+	    <div class="tab-pane well" id="tab-xml">
+		<pre id="svgsrc">source</pre>
+		</div>
 	  </div>
 	  </div>
-	<div class="span5">
+	<div class="span6">
 <div id="svgdiv" style="width:100%;height:30em;border:1px solid red;min-height:20em;">svg here</div>
 	</div>
 	<script>
