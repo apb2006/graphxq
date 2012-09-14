@@ -49,12 +49,19 @@ function graphxq-svg($dot,$url,$dl) {
 	return ($down[$dl],$svg) 
 };
 
+(:~
+: display dot edit form
+: @param src load from url
+:)
 declare 
 %rest:GET %rest:path("graphxq/dot")
 %output:method("html5")
-function dotform(){
+%rest:form-param("src","{$src}")
+function dotform($src){
+    let $dot:= getdot("digraph {{a -> b}}",$src)
 	let $map:=map{"list-shapes":=dotui:shapes(""),
-	              "list-colors":=dotui:colors("")}
+	              "list-colors":=dotui:colors(""),
+				  "dot":=$dot}
 	return render("graphxq/views/dotform.xml",$map)
 };
 
@@ -97,7 +104,15 @@ declare %private function get-svg($dot as xs:string) as node(){
 };         			
 
 declare function render($template,$locals){
-	let $default:=map{"sidebar":="Sidebar..." ,
+ let $sidebar:=<div>
+ <ul>
+ <div>Smples:</div>
+    <li> <a href="dot?src=graphxq/samples/process.gv">process</a></li>
+    <li><a href="/restxq/graphxq/dot?src=graphxq/samples/unix.gv">unix</a></li>
+     <li> <a href="/restxq/graphxq/dot?src=graphxq/samples/root.gv">root (slow)</a></li>
+     </ul> 
+    </div>
+	let $default:=map{"sidebar":=$sidebar ,
                        "usermenu":=<div>users</div>,
                        "title":=request:path(),
 					   "messages":=()}

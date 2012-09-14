@@ -71,6 +71,7 @@ function getsvg(dl){
                 var n = document.importNode(data.documentElement,true);              
                 $("#svgdiv").empty().append(n);
 				$("#svgsrc").empty().text(str);
+				$("#svgdiv svg").svgPan("graph1");
               }
             });
 };

@@ -163,9 +163,10 @@
                         offsetX = evt.pageX - offset.left;
                         offsetY = evt.pageY - offset.top;
                     }
-
-                    p.x = offsetX;
-                    p.y = offsetY;
+p.x = evt.originalEvent.clientX - root.getBoundingClientRect().left;
+p.y = evt.originalEvent.clientY - root.getBoundingClientRect().top;
+                //    p.x = offsetX;
+                 //   p.y = offsetY;
 
                     return p;
                 },
