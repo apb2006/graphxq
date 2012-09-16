@@ -47,29 +47,37 @@
 						<img src="/graphxq/graphxq2.png" />
 						graphXQ
 					</a>
-					<form class="pull-right  navbar-search" action="search">
-						<input type="text" class="search-query span3" placeholder="Search"
-							name="q" />
-						<div class="icon-search"></div>
-					</form>
-					<div class="btn-group pull-right" style="margin-top:0px">
-					{$usermenu}				
-								
-					</div>
+					
 					 <div class="nav-collapse collapse">
             <ul class="nav">
-              
-              <li class="">
-                <a href="./dot" rel="tooltip" data-title="first tooltip">Dot</a>
-              </li>
-              <li class="">
-                <a href="./dotml">DotML</a>
-              </li>
-               
-              <li class="">
+                <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Create
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="dot"><i class="icon-edit"></i> Dot</a>
+                                </li>
+                                <li>
+                                    <a href="dotml"><i class="icon-align-center"></i> DotML</a>
+                                </li>
+                            </ul>   
+                </li>
+                  
+              <li class="nav">
                 <a href="about">About</a>
               </li>
             </ul>
+            <form class="pull-right  navbar-search" action="search">
+                        <input type="text" class="search-query span3" placeholder="Search"
+                            name="q" />
+                        <div class="icon-search"></div>
+                    </form>
+                    <div class="btn-group pull-right" style="margin-top:0px">
+                    {$usermenu}             
+                                
+                    </div>
           </div>
 
 

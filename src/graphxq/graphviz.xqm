@@ -51,9 +51,9 @@ declare %private function dot1( $dot as xs:string) as node(){
                 let $ver:=$s/comment()[1]/fn:normalize-space()
 				let $title:=$s/comment()[2]/fn:normalize-space()
                 let $svg:=$s/* 				
-                return   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-  width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
-  {$svg/@* except ($svg/@width,$svg/@height,$svg/@preserveAspectRatio),
+                return   <svg xmlns="http://www.w3.org/2000/svg" 
+                xmlns:xlink="http://www.w3.org/1999/xlink" >
+  {$svg/@* ,
    <metadata>
     <rdf:RDF
            xmlns:rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"

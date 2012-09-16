@@ -100,13 +100,14 @@ else
 (:~  post process svg :)
 declare %private function get-svg($dot as xs:string) as node(){
     let $svgx:=gr:dot($dot,())
-    return  gr:autosize($svgx) 
+    return   gr:autosize($svgx) 
 };         			
 
 declare function render($template,$locals){
  let $sidebar:=<div>
+ <a href="/graphxq/viewbox/viewBox.svg">viewbox work</a>
  <ul>
- <div>Smples:</div>
+ <div>Samples:</div>
     <li> <a href="dot?src=graphxq/samples/process.gv">process</a></li>
     <li><a href="/restxq/graphxq/dot?src=graphxq/samples/unix.gv">unix</a></li>
      <li> <a href="/restxq/graphxq/dot?src=graphxq/samples/root.gv">root (slow)</a></li>
