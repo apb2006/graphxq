@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head id="head">
+    <meta charset="utf-8">
+    <title id="title">svg loader</title>
+   	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.1/jquery.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+$(document).ready(function(){
+   $("#load").on("click",getsvg);
+  
+});
+function getsvg(){
+	var f=$("#src").val();
+alert("hi: "+f);
+$.ajax({
+             type:"GET",
+			 url:f,
+            
+			 dataType: "text",
+             success: function(str){
+               // console.log(data)
+			   var oParser = new DOMParser();
+               var data = oParser.parseFromString(str, "text/xml");
+                // http://stackoverflow.com/questions/3346106/accessing-a-dom-object-defined-in-an-external-svg-file
+                var n = document.importNode(data.documentElement,true);              
+        //        $("#svgdiv").empty().append(n);
+                $("#cuthere").empty().append(n);
+			    
+ 
+              }
+            });
+};
+</script>
+  </head>
+  <body>
+    <div>
+     <input id="src" value="hedge.svg"/>
+     <button id="load">load</button> 
+	 </div>
+	 <svg xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" onload="init(evt)"  onmousemove="show_coords(evt)"
+  style="border:5px solid red;overflow:scroll;"
+  viewBox="0 0 400 400" version="1.1" width="500px" height="300px" preserveAspectRatio="xMidYMid meet">
+     <script type="text/ecmascript" xlink:href="../viewbox/ViewBox.js"/>
+	  <script type="text/ecmascript"><![CDATA[
+	   var svgns = "http://www.w3.org/2000/svg";
+        var svgRoot;
+       
+        var viewBox;
+        var cursor;
+        var coords; 
+        function init(e) {
+            if ( window.svgDocument == null )
+                svgDocument = e.target.ownerDocument;
+
+            svgRoot =  e.target;
+			 
+           // viewBox  = new ViewBox(svgRoot); 
+			tspans =svgRoot.getElementById("coords").getElementsByTagNameNS(svgns, "tspan");
+        };
+		
+	  function show_coords(e) {
+            var parent = e.currentTarget;
+            var p1     = svgRoot.createSVGPoint();
+			p1.x = e.clientX;
+            p1.y = e.clientY;
+		 
+			// Show the results
+            tspans.item(1).firstChild.data = e.clientX;
+            tspans.item(3).firstChild.data = e.clientY;
+            tspans.item(5).firstChild.data = Math.round(p1.x*100) / 100;
+            tspans.item(7).firstChild.data = Math.round(p1.y*100) / 100;
+			}
+	 ]]></script>
+ <rect x="0" y="0" width="100%" height="100%" fill="yellow"  />	 
+  <g id="cuthere">		
+  
+</g>
+	  <rect x="10" y="10" width="250" height="40" fill="blue" opacity="0.6"/>
+        <text id="coords" fill="white" transform="translate(20,10)"
+              pointer-events="none">
+            <tspan  x="0" dy="10pt">Client X = </tspan><tspan> </tspan>
+            <tspan  x="0" dy="10pt">Client Y = </tspan><tspan> </tspan>
+            <tspan  x="120" dy="-10pt">User X  = </tspan><tspan> </tspan>
+            <tspan x="120" dy="10pt">User Y  = </tspan><tspan> </tspan>
+        </text>
+ 
+</svg>
+   <div id="svgdiv" style="width:400px;height:300px" >hi</div>
+	 </body>
+	 </html>
