@@ -1,17 +1,86 @@
-<!DOCTYPE html>
+<!DOCTYPE html5>
 <html>
   <head id="head">
     <meta charset="utf-8">
     <title id="title">svg loader</title>
    	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.1/jquery.min.js" type="text/javascript"></script>
+
 	<script type="text/javascript">
 $(document).ready(function(){
    $("#load").on("click",getsvg);
-  
+   $("#svgbox").bind('mouseup', handleMouseUp)
+              .bind('mousedown', handleMouseDown)
+              .bind('mouseenter', handleMouseEnter)
+              .bind('mouseleave', handleMouseLeave);
+   if ($.browser.webkit) {
+        window.addEventListener('mousewheel', handleMouseWheel, false); // Chrome/Safari
+	} else if ($.browser.mozilla) {
+		window.addEventListener('DOMMouseScroll', handleMouseWheel, false); // Firefox
+	} else {
+		window.addEventListener('mousewheel', handleMouseWheel, false); // others (Opera, Explorer9)
+	}
 });
+var handleMouseUp=function(evt){
+ console.log("handleMouseUp")
+};
+var handleMouseDown=function(evt){
+ console.log("handleMouseDown")
+};
+var handleMouseEnter=function(evt){
+ if (!isMouseOverElem) {
+      isMouseOverElem = true;
+ }
+ console.log("handleMouseEnter")
+};
+var handleMouseLeave=function(evt){
+ if (isMouseOverElem) {
+    isMouseOverElem = false;
+}
+ console.log("handleMouseLeave")
+};
+ /**
+ * Handle mouse wheel event.
+ */
+var handleMouseWheel = function (evt) {
+	if (!enableZoom) {
+		return;
+	}
+
+	if (!isMouseOverElem) {
+		return;
+	}
+
+	if (evt.preventDefault) {
+		evt.preventDefault();
+	}
+
+	evt.returnValue = false;
+	recentOffset = $root.offset();
+
+	var delta = evt.wheelDelta ? evt.wheelDelta / 360 : evt.detail / -9,
+		z = Math.pow(1 + zoomScale, delta),
+		g = svgRoot,
+		p = getEventPoint(evt),
+		k;
+
+	p = p.matrixTransform(g.getCTM().inverse());
+
+	// Compute new scale matrix in current mouse position
+	k = root.createSVGMatrix().translate(p.x, p.y).scale(z).translate(-p.x, -p.y);
+
+	setCTM(g, g.getCTM().multiply(k));
+
+	if (typeof stateTf === "undefined") {
+		stateTf = g.getCTM().inverse();
+	}
+
+	stateTf = stateTf.multiply(k.inverse());
+};
+var isMouseOverElem = false;
+var enableZoom=true;
 function getsvg(){
 	var f=$("#src").val();
-alert("hi: "+f);
+ 
 $.ajax({
              type:"GET",
 			 url:f,
@@ -27,28 +96,41 @@ $.ajax({
                 $("#cuthere").empty().append(n);
 			    
  
-              }
+              },
+			 error:function(jqXHR, textStatus, errorThrown){
+				alert("ajax error: "+textStatus + errorThrown);
+			}			 
             });
 };
 </script>
   </head>
-  <body>
+  <body> 
     <div>
-     <input id="src" value="hedge.svg"/>
+	<input id="src" list="svgtest" autofocus="autofocus"/>
+
+<datalist id="svgtest">
+	<option value="hedge.svg"/>
+	<option value="multiple.svg"/>
+	<option value="http://open1-apb.rhcloud.com/restxq/hedge/svg?hedge=a%28bcd%28ef%29%29"/>
+	<option value="7-demicube_t0_D7.svg"/>
+</datalist> 
+      
      <button id="load">load</button> 
+
 	 </div>
 	 <svg xmlns="http://www.w3.org/2000/svg"
-  xmlns:xlink="http://www.w3.org/1999/xlink" onload="init(evt)"  onmousemove="show_coords(evt)"
+  xmlns:xlink="http://www.w3.org/1999/xlink" onload="init(evt)"  onmousemove="show_coords(evt)" id="svgbox"
   style="border:5px solid red;overflow:scroll;"
   viewBox="0 0 400 400" version="1.1" width="500px" height="300px" preserveAspectRatio="xMidYMid meet">
      <script type="text/ecmascript" xlink:href="../viewbox/ViewBox.js"/>
 	  <script type="text/ecmascript"><![CDATA[
 	   var svgns = "http://www.w3.org/2000/svg";
         var svgRoot;
-       
+       var pTrans;
         var viewBox;
         var cursor;
         var coords; 
+		
         function init(e) {
             if ( window.svgDocument == null )
                 svgDocument = e.target.ownerDocument;
@@ -57,34 +139,84 @@ $.ajax({
 			 
            // viewBox  = new ViewBox(svgRoot); 
 			tspans =svgRoot.getElementById("coords").getElementsByTagNameNS(svgns, "tspan");
+			pTrans     = svgRoot.createSVGPoint();pTrans.x=pTrans.y=0;scale=1;
+		 var cuthere=document.getElementById("cuthere");
+		 cuthere.addEventListener ( 'DOMNodeInserted', onNodeInsert, false );
         };
+        function onNodeInsert(e){
+        console.log("loaded: ",cuthere.getBBox().height,cuthere.getBBox().width);
+        };
+		function translate(dx,dy){
+			pTrans.x+=dx;pTrans.y+=dy
+			update();
+			
+		};
+		
+	function update(){
+	  cuthere.setAttribute("transform", "translate("+pTrans.x+","+pTrans.y+") scale("+scale+")");
+	};
+	
+	function reset(){
+		pTrans.x=0;pTrans.y=0;scale=1;
+		update();
+		console.log(cuthere.getBBox().height,cuthere.getBBox().width);
+	};
 		
 	  function show_coords(e) {
             var parent = e.currentTarget;
             var p1     = svgRoot.createSVGPoint();
 			p1.x = e.clientX;
             p1.y = e.clientY;
-		 
+		 //http://stackoverflow.com/questions/2930625/svg-from-window-coordinates-to-viewbox-coordinates
+        p1.x = e.pageX;
+        p1.y = e.pageY;
+        var ctm = e.target.getScreenCTM();
+        if (ctm = ctm.inverse()){
+            p1 = p1.matrixTransform(ctm);
+        }else{
+		alert("no inservse");
+		}
 			// Show the results
             tspans.item(1).firstChild.data = e.clientX;
             tspans.item(3).firstChild.data = e.clientY;
             tspans.item(5).firstChild.data = Math.round(p1.x*100) / 100;
             tspans.item(7).firstChild.data = Math.round(p1.y*100) / 100;
+			 tspans.item(9).firstChild.data = pTrans.x;
+            tspans.item(11).firstChild.data = pTrans.y;;
 			}
 	 ]]></script>
  <rect x="0" y="0" width="100%" height="100%" fill="yellow"  />	 
-  <g id="cuthere">		
+  <g id="cuthere" >		
   
 </g>
-	  <rect x="10" y="10" width="250" height="40" fill="blue" opacity="0.6"/>
-        <text id="coords" fill="white" transform="translate(20,10)"
+<rect x="0" y="0" width="100%" height="100%" fill="transparent"  />	 
+<g id="hud" transform="translate(10,10)">
+	  <rect x="0" y="0" width="400" height="40" fill="blue" opacity="0.6"/>
+	  <rect x="1" y="2" width="12" height="12" fill="red" onclick="translate(5,5)">
+	  <title>move +</title>
+	  </rect>
+	  <rect x="14" y="2" width="12" height="12" fill="green"  onclick="translate(-5,-5)">
+	  <title>move -</title>
+	  </rect>
+	   <rect x="1" y="14" width="12" height="12" fill="orange"  onclick="scale=1.1*scale;update()">
+	   <title>scale +</title>
+	   </rect>
+	    <rect x="14" y="14" width="12" height="12" fill="orange"  onclick="scale=0.9*scale;update()">
+	   <title>scale -</title>
+	    </rect>
+	      <rect x="0" y="28" width="12" height="12" fill="orange"  onclick="reset()">
+       <title>reset</title>
+        </rect>
+        <text id="coords" fill="white" transform="translate(25,5)"
               pointer-events="none">
             <tspan  x="0" dy="10pt">Client X = </tspan><tspan> </tspan>
             <tspan  x="0" dy="10pt">Client Y = </tspan><tspan> </tspan>
-            <tspan  x="120" dy="-10pt">User X  = </tspan><tspan> </tspan>
-            <tspan x="120" dy="10pt">User Y  = </tspan><tspan> </tspan>
+            <tspan  x="140" dy="-10pt">User X  = </tspan><tspan> </tspan>
+            <tspan x="140" dy="10pt">User Y  = </tspan><tspan> </tspan>
+			<tspan  x="260" dy="-10pt">pTransX  = </tspan><tspan> </tspan>
+            <tspan x="260" dy="10pt">pTransY  = </tspan><tspan> </tspan>
         </text>
- 
+ </g>
 </svg>
    <div id="svgdiv" style="width:400px;height:300px" >hi</div>
 	 </body>
