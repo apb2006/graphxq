@@ -1,6 +1,8 @@
 (:~ 
 :  A(nother) templating Engine for XQuery  (BaseX 7.5 specific)
-:  
+:  specials:
+: partial(file,name,sequence) 
+:
 : @author andy bunce
 : @since sept 2012
 :)

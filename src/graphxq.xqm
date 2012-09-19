@@ -59,8 +59,10 @@ declare
 %rest:form-param("src","{$src}")
 function dotform($src){
     let $dot:= getdot("digraph {{a -> b}}",$src)
+    let $svgwidget:=fn:doc("graphxq/views/widget.svg")
 	let $map:=map{"list-shapes":=dotui:shapes(""),
 	              "list-colors":=dotui:colors(""),
+	              "svgwidget":=$svgwidget,
 				  "dot":=$dot}
 	return render("graphxq/views/dotform.xml",$map)
 };

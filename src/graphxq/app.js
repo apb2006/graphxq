@@ -69,10 +69,12 @@ function getsvg(dl){
                var data = oParser.parseFromString(str, "text/xml");
                 // http://stackoverflow.com/questions/3346106/accessing-a-dom-object-defined-in-an-external-svg-file
                 var n = document.importNode(data.documentElement,true);              
-                $("#svgdiv").empty().append(n);
+                $("#cuthere").empty().append(n);
 				$("#svgsrc").empty().text(str);
-				$("#svgdiv svg").svgPan("graph1");
-              }
+              },
+ 			 error:function(jqXHR, textStatus, errorThrown){
+ 				console.log("ajax error: "+textStatus + errorThrown);
+ 			}			
             });
 };
 
