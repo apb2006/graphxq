@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
 	onload="init(evt)" width="100%" height="100%" viewBox="0 0 400 400"
-	version="1.1" preserveAspectRatio="xMidYMid meet">
+	version="1.1" preserveAspectRatio="xMinYMin meet">
 	<script type="text/ecmascript"><![CDATA[
         var svgns = "http://www.w3.org/2000/svg";
         var svgRoot;
@@ -20,22 +20,24 @@
             var onMouseDown=function(evt){
                 inPan=true; 
                 var p2=getEventPoint(evt,true)
-                stateOrigin.x=pTrans.x-p2.x;
-                stateOrigin.y=pTrans.y-p2.y;
+                stateOrigin.x=pTrans.x-(p2.x/zoomScale);
+                stateOrigin.y=pTrans.y-(p2.y/zoomScale);
             //  console.log("handleMouseDown")
             };
             var onMouseLeave=function(evt){
-                inPan=false;
+                //inPan=false;
             };
             var onMouseMove=function(evt){
-              show_coords(evt);
+             
               if(inPan){
                var p2=getEventPoint(evt,true);
             //   console.log("PAN>>",pTrans.x,pTrans.y)
-               pTrans.x=(stateOrigin.x+p2.x);
-               pTrans.y=(stateOrigin.y+p2.y);
+               pTrans.x=stateOrigin.x+(p2.x/zoomScale);
+               pTrans.y=stateOrigin.y+(p2.y/zoomScale);
                update();
-              }
+              }else{
+			   show_coords(evt);
+			  }
             };
              /**
              * Handle mouse wheel event.
@@ -55,14 +57,14 @@
             svgRoot.addEventListener('mouseup', onMouseUp, false );
             svgRoot.addEventListener('mousedown', onMouseDown, false );
             svgRoot.addEventListener('mousemove', onMouseMove,false );
-            svgRoot.addEventListener('mouseleave', onMouseMove,false );             
-            if ($.browser.webkit) {
-                svgRoot.addEventListener('mousewheel', onMouseWheel, false); // Chrome/Safari
-            } else if ($.browser.mozilla) {
-                svgRoot.addEventListener('DOMMouseScroll', onMouseWheel, false); // Firefox
-            } else {
-                svgRoot.addEventListener('mousewheel', onMouseWheel, false); // others (Opera, Explorer9)
-            }
+            svgRoot.addEventListener('mouseleave', onMouseMove,false );
+			
+			if(navigator.userAgent.toLowerCase().indexOf('webkit') >= 0)
+                window.addEventListener('mousewheel', onMouseWheel, false); // Chrome/Safari
+            else
+                window.addEventListener('DOMMouseScroll', onMouseWheel, false); // Others
+			
+            
             var cuthere=document.getElementById("cuthere");
             cuthere.addEventListener ( 'DOMNodeInserted', onNodeInsert, false );
         };
@@ -81,7 +83,7 @@
           var s=fitScale*zoomScale 
           var k = svgRoot.createSVGMatrix().scale(s).translate(pTrans.x,pTrans.y);
           setCTM(cuthere,k)
-          // cuthere.setAttribute("transform", "translate("+pTrans.x+","+pTrans.y+") scale("+scale+")");
+          showState();
         };
         
         function updateScale(d,evt){
@@ -141,7 +143,14 @@
             };
             return p1
         };
-        
+      function showState(){
+	    var tspans =svgRoot.getElementById("coords").getElementsByTagNameNS(svgns, "tspan");
+		tspans.item(9).firstChild.data = pTrans.x.toFixed(2);
+		tspans.item(11).firstChild.data = pTrans.y.toFixed(2);	
+		tspans.item(13).firstChild.data = zoomScale.toFixed(2);
+		tspans.item(15).firstChild.data = fitScale.toFixed(2);
+		};
+		
       function show_coords(e) {
             var p1 = getEventPoint(e,true);     
             // Show the results
@@ -151,11 +160,7 @@
             tspans.item(3).firstChild.data = e.clientY;
             tspans.item(5).firstChild.data = p1.x.toFixed(2);
             tspans.item(7).firstChild.data = p1.y.toFixed(2);
-            tspans.item(9).firstChild.data = pTrans.x.toFixed(2);
-            tspans.item(11).firstChild.data = pTrans.y.toFixed(2);
-            
-            tspans.item(13).firstChild.data = zoomScale.toFixed(2);
-            tspans.item(15).firstChild.data = fitScale.toFixed(2);
+            showState();
             }
      ]]></script>
 	<rect x="0" y="0" width="100%" height="100%" fill="none" stroke-width="1" stroke="none"/>

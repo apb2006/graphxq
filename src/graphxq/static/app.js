@@ -51,6 +51,17 @@ $(document).ready(function(){
    $("#bnsvg").on("click",function(){ $("#dotForm").submit()});
    $("#bndn").on("click",function(){getsvg(true)});
    $("#dot").on("keyup",getsvg);
+   $('.colorpicker').colorPicker();
+   var resize=function(){
+     var h=$(window).height();
+     $('.extend').each(function(){
+	  var j=$(this)
+	   var top=j.offset();
+	   j.height(h-top.top-10)
+	 });
+	};  
+    $(window).resize(resize);
+    resize();	
 });
 
 function getsvg(dl){

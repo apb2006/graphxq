@@ -3,18 +3,24 @@
     <h1>About GraphXQ</h1>
 	<p>
 		This application provides a web interface to <a href="http://www.graphviz.org/">Graphviz</a>.
-		It uses the <a href="http://basex.org" target="_blank">BaseX</a> <a
+	</p>
+    <p>	
+		The server side is written entirely in XQuery. It uses the 
+		<a href="http://basex.org" target="_blank">BaseX</a> implementation. <a
 			href="http://docs.basex.org/wiki/RESTXQ" target="_blank">RestXQ</a>
-		implementation which allows the use of XQuery annotations to specify
-		web server behavior.
+		is used to map XQuery annotations to web server behavior.
+	</p>
+	<p>The client side targets modern browsers. It was tested against Firefox 15 and Chrome 21.
 	</p>
 	<p>
 		This application includes DOTML developed by Martin Loetzsch 
-   (<a href="http://www.martin-loetzsch.de/DOTML">http://www.martin-loetzsch.de/DOTML</a>).
+   (<a href="http://www.martin-loetzsch.de/DOTML" target="_blank">http://www.martin-loetzsch.de/DOTML</a>).
    DotML is a XML based syntax for the input language of the 'Dot' graph drawing tool from the AT&amp;T GraphViz suite. It can be transformed to the native syntax of the 'Dot' tool using XSLT. 
 	</p>
-	<p>Twitter <a href="http://twitter.github.com/bootstrap/index.html"
-			target="_blank">Bootstrap</a> is used for the client side styling.
+	<p>Client libraries are loaded from CDN where possible. In particular
+	<a href="http://cdnjs.com"  target="_blank">cdnjs.com</a> is used. 
+	Twitter <a href="http://twitter.github.com/bootstrap/index.html"
+			target="_blank">Bootstrap</a> is used for the client side styling. 
 	</p>
 
 	</div>

@@ -1,3 +1,4 @@
 #/bin/sh
-cp -r src/* /home/andy/usr/basex/webapp/
-echo copied to /home/andy/usr/basex/webapp/
+rsync --verbose  --progress --stats --compress  \
+      --recursive --times --perms --links --delete \
+        src/* /home/andy/usr/basex/webapp/

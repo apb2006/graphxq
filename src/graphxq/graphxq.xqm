@@ -7,13 +7,13 @@
 module namespace grxq = 'apb.graphviz.web';
 declare default function namespace 'apb.graphviz.web'; 
 
-import module namespace gr = 'apb.graphviz' at "graphxq/graphviz.xqm";
-import module namespace dotui = 'apb.graphxq.dotui' at "graphxq/dotui.xqm";
-import module namespace txq = 'apb.txq' at "graphxq/lib/txq.xqm";
+import module namespace gr = 'apb.graphviz' at "lib/graphviz.xqm";
+import module namespace dotui = 'apb.graphxq.dotui' at "dotui.xqm";
+import module namespace txq = 'apb.txq' at "lib/txq.xqm";
 import module namespace request = "http://exquery.org/ns/request";
 declare namespace rest = 'http://exquery.org/ns/restxq';
 
-declare variable $grxq:layout:=fn:resolve-uri("graphxq/views/layout.xml");
+declare variable $grxq:layout:=fn:resolve-uri("views/layout.xml");
 
 declare 
 %rest:GET %rest:path("graphxq") 
@@ -25,7 +25,7 @@ function graphxq($dot,$url) {
     let $dot2:=getdot($dot,$url)
 	let $svg:=get-svg($dot)
 	let $map:=map{"dot":=$dot,"url":=$url,"svg":=$svg,"edot":=$edot}
-	let $page:=render("graphxq/views/page1.xml",$map)
+	let $page:=render("views/page1.xml",$map)
 	 return $page
 };
 
@@ -41,12 +41,16 @@ declare
 function graphxq-svg($dot,$url,$dl) {
 	let $dot2:=getdot($dot,$url)
 	let $svg:=get-svg($dot2)
-	let $down:=<rest:response> 
-            <http:response>
-            <http:header name="Content-Disposition" value='attachment;filename="graphxq.svg"'/>              
-           </http:response>
-       </rest:response>
-	return ($down[$dl],$svg) 
+		let $resp:=<rest:response>
+					<http:response>
+						<http:header name="Access-Control-Allow-Origin" value="*"/>
+						{if($dl)
+						then <http:header name="Content-Disposition" value='attachment;filename="graphxq.svg"'/>
+						else ()}
+					</http:response>
+				</rest:response>
+	
+	return ($resp,$svg) 
 };
 
 (:~
@@ -59,26 +63,26 @@ declare
 %rest:form-param("src","{$src}")
 function dotform($src){
     let $dot:= getdot("digraph {{a -> b}}",$src)
-    let $svgwidget:=fn:doc("graphxq/views/widget.svg")
+    let $svgwidget:=fn:doc("views/widget.svg")
 	let $map:=map{"list-shapes":=dotui:shapes(""),
 	              "list-colors":=dotui:colors(""),
 	              "svgwidget":=$svgwidget,
 				  "dot":=$dot}
-	return render("graphxq/views/dotform.xml",$map)
+	return render("views/dotform.xml",$map)
 };
 
 declare 
 %rest:GET %rest:path("graphxq/dotml")
 %output:method("html5")
 function dotmlform(){
-	render("graphxq/views/dotmlform.xml",map{})
+	render("views/dotmlform.xml",map{})
 };
 
 declare 
 %rest:GET %rest:path("graphxq/about")
 %output:method("html5")
 function about(){
-	render("graphxq/views/about.xml",map{})
+	render("views/about.xml",map{})
 };
 
 declare 
@@ -87,7 +91,15 @@ declare
 %rest:form-param("q", "{$q}")
 function search($q ) {
  let $map:=map{"q":=$q}
- return render("graphxq/views/search.xml",$map)
+ return render("views/search.xml",$map)
+};
+
+declare 
+%rest:GET %rest:path("graphxq/library")
+%output:method("html5")
+ function library( ) {
+ let $map:=map{ }
+ return render("views/library.xml",$map)
 };
 
 
@@ -110,15 +122,16 @@ declare function render($template,$locals){
  <a href="/graphxq/viewbox/viewBox.svg">viewbox work</a>
  <ul>
  <div>Samples:</div>
-    <li> <a href="dot?src=graphxq/samples/process.gv">process</a></li>
-    <li><a href="/restxq/graphxq/dot?src=graphxq/samples/unix.gv">unix</a></li>
-     <li> <a href="/restxq/graphxq/dot?src=graphxq/samples/root.gv">root (slow)</a></li>
+    <li> <a href="dot?src=samples/dot/process.gv">process</a></li>
+    <li><a href="/restxq/graphxq/dot?src=samples/dot/unix.gv">unix</a></li>
+     <li> <a href="/restxq/graphxq/dot?src=samples/dot/root.gv">root (slow)</a></li>
      </ul> 
     </div>
 	let $default:=map{"sidebar":=$sidebar ,
                        "usermenu":=<div>users</div>,
                        "title":=request:path(),
-					   "messages":=()}
+					   "messages":=(),
+					   "libserver":="//cdnjs.cloudflare.com/ajax/libs"}
 	let $locals:=map:new(($default,$locals))				   
 	return txq:render(fn:resolve-uri($template),$locals,$grxq:layout)
 };	   
