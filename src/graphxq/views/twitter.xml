@@ -1,0 +1,5 @@
+<div>
+<!-- q,collection, hits -->
+    <h1>No twitter yet</h1>
+     <pre>{$data}</pre>    
+    </div> 

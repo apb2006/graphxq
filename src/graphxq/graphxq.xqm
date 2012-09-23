@@ -7,11 +7,15 @@
 module namespace grxq = 'apb.graphviz.web';
 declare default function namespace 'apb.graphviz.web'; 
 
-import module namespace gr = 'apb.graphviz' at "lib/graphviz.xqm";
 import module namespace dotui = 'apb.graphxq.dotui' at "dotui.xqm";
+
 import module namespace txq = 'apb.txq' at "lib/txq.xqm";
+import module namespace gr = 'apb.graphviz' at "lib/graphviz.xqm";
+import module namespace oa="http://basex.org/ns/oauth" at "lib/oauth.xqy";
+import module namespace config="apb.config" at "lib/config.xqm";
 import module namespace request = "http://exquery.org/ns/request";
 declare namespace rest = 'http://exquery.org/ns/restxq';
+
 
 declare variable $grxq:layout:=fn:resolve-uri("views/layout.xml");
 
@@ -102,6 +106,14 @@ declare
  return render("views/library.xml",$map)
 };
 
+declare 
+%rest:GET %rest:path("graphxq/twitter")
+%output:method("html5")
+ function twitter( ) {
+ let $d:=$config:config
+ let $map:=map{"data":=fn:serialize($d) }
+ return render("views/twitter.xml",$map)
+};
 
 (:~  use dot or url :)
 declare %private function getdot($dot,$url) as xs:string{
@@ -131,7 +143,8 @@ declare function render($template,$locals){
                        "usermenu":=<div>users</div>,
                        "title":=request:path(),
 					   "messages":=(),
-					   "libserver":="//cdnjs.cloudflare.com/ajax/libs"}
+					   "libserver":=$config:libserver,
+					    "aceserver":=$config:aceserver}
 	let $locals:=map:new(($default,$locals))				   
 	return txq:render(fn:resolve-uri($template),$locals,$grxq:layout)
 };	   
