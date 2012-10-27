@@ -63,7 +63,7 @@
 <div id="svgdiv" class="extend well" style="width:95%;height:30em;min-height:20em;">{$svgwidget}</div>
 
 	</div>
-<script src="{$aceserver}/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="{$aceserver}/ace.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 	$(document).ready(function(){{
 	  getsvg(false)

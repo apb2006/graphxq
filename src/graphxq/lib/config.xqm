@@ -11,7 +11,7 @@ declare default function namespace 'apb.config';
 declare variable $config:default:=
 <config>
     <libserver>//cdnjs.cloudflare.com/ajax/libs</libserver>
-     <aceserver>http://d1n0x3qji82z53.cloudfront.net</aceserver>
+     <aceserver>http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict</aceserver>
     <twitter>
         <CONSUMER-KEY>CONSUMER-KEY</CONSUMER-KEY>
         <CONSUMER-SECRET>CONSUMER-SECRET</CONSUMER-SECRET>
