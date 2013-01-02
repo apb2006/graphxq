@@ -48,12 +48,9 @@ jQuery(function($) { $.extend({
 
 $(document).ready(function(){
    $("#bnup").on("click",getsvg);
-   $("#bnsvg").on("click",function(){ submit(false)});
-   $("#bndn").on("click",function(){submit(true)});
+   $("#bnsvg").on("click",function(){ $("#dotForm").submit()});
+   $("#bndn").on("click",function(){getsvg(true)});
    $("#dot").on("keyup",getsvg);
-   $('.colorpicker').colorPicker();
-   
-   // set height where extend class
    var resize=function(){
      var h=$(window).height();
      $('.extend').each(function(){
@@ -66,11 +63,6 @@ $(document).ready(function(){
     resize();	
 });
 
-function submit(dl){
-	$("#ckdnload").prop("checked",dl);
-	$("#dotForm").submit()
-}
-
 function getsvg(dl){
      var f=$("#dotForm").serializeArray()
      var d=$("#frm-defaults").serializeArray()
@@ -81,20 +73,19 @@ function getsvg(dl){
 			 url:"svg",
              data:f,
 			 dataType: "text",
-             success: updateSvg,
+             success: function(str){
+               // console.log(data)
+			   var oParser = new DOMParser();
+               var data = oParser.parseFromString(str, "text/xml");
+                // http://stackoverflow.com/questions/3346106/accessing-a-dom-object-defined-in-an-external-svg-file
+                var n = document.importNode(data.documentElement,true);              
+                $("#cuthere").empty().append(n);
+				$("#svgsrc").empty().text(str);
+              },
  			 error:function(jqXHR, textStatus, errorThrown){
  				console.log("ajax error: "+textStatus + errorThrown);
  			}			
             });
-};
-function updateSvg(str){
-	 // console.log(data)
-	var oParser = new DOMParser();
-    var data = oParser.parseFromString(str, "text/xml");
-     // http://stackoverflow.com/questions/3346106/accessing-a-dom-object-defined-in-an-external-svg-file
-    var n = document.importNode(data.documentElement,true);              
-    $("#cuthere").empty().append(n);
-	$("#svgsrc").empty().text(str);	
 };
 
 function dotit(){

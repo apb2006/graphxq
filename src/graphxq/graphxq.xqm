@@ -7,21 +7,17 @@
 module namespace grxq = 'apb.graphviz.web';
 declare default function namespace 'apb.graphviz.web'; 
 
+import module namespace gr = 'apb.graphviz' at "graphviz.xqm";
 import module namespace dotui = 'apb.graphxq.dotui' at "dotui.xqm";
-
 import module namespace txq = 'apb.txq' at "lib/txq.xqm";
-import module namespace gr = 'apb.graphviz' at "lib/graphviz.xqm";
-import module namespace oa="http://basex.org/ns/oauth" at "lib/oauth.xqy";
-import module namespace config="apb.config" at "lib/config.xqm";
 import module namespace request = "http://exquery.org/ns/request";
 declare namespace rest = 'http://exquery.org/ns/restxq';
-
 
 declare variable $grxq:layout:=fn:resolve-uri("views/layout.xml");
 
 declare 
 %rest:GET %rest:path("graphxq") 
-%output:method("html5")
+%output:method("html") %output:version("5.0")
 %rest:form-param("dot","{$dot}","")
 %rest:form-param("url","{$url}") 
 function graphxq($dot,$url) {
@@ -63,7 +59,7 @@ function graphxq-svg($dot,$url,$dl) {
 :)
 declare 
 %rest:GET %rest:path("graphxq/dot")
-%output:method("html5")
+%output:method("html") %output:version("5.0")
 %rest:form-param("src","{$src}")
 function dotform($src){
     let $dot:= getdot("digraph {{a -> b}}",$src)
@@ -77,43 +73,35 @@ function dotform($src){
 
 declare 
 %rest:GET %rest:path("graphxq/dotml")
-%output:method("html5")
+%output:method("html") %output:version("5.0")
 function dotmlform(){
 	render("views/dotmlform.xml",map{})
 };
 
 declare 
 %rest:GET %rest:path("graphxq/about")
-%output:method("html5")
+%output:method("html") %output:version("5.0")
 function about(){
 	render("views/about.xml",map{})
 };
 
 declare 
 %rest:GET %rest:path("graphxq/search")
-%output:method("html5")
+%output:method("html") %output:version("5.0")
 %rest:form-param("q", "{$q}")
 function search($q ) {
  let $map:=map{"q":=$q}
  return render("views/search.xml",$map)
 };
-
 declare 
 %rest:GET %rest:path("graphxq/library")
-%output:method("html5")
- function library( ) {
+%output:method("html") %output:version("5.0")
+ 
+function library( ) {
  let $map:=map{ }
  return render("views/library.xml",$map)
 };
 
-declare 
-%rest:GET %rest:path("graphxq/twitter")
-%output:method("html5")
- function twitter( ) {
- let $d:=$config:config
- let $map:=map{"data":=fn:serialize($d) }
- return render("views/twitter.xml",$map)
-};
 
 (:~  use dot or url :)
 declare %private function getdot($dot,$url) as xs:string{
@@ -142,9 +130,7 @@ declare function render($template,$locals){
 	let $default:=map{"sidebar":=$sidebar ,
                        "usermenu":=<div>users</div>,
                        "title":=request:path(),
-					   "messages":=(),
-					   "libserver":=$config:libserver,
-					    "aceserver":=$config:aceserver}
+					   "messages":=()}
 	let $locals:=map:new(($default,$locals))				   
 	return txq:render(fn:resolve-uri($template),$locals,$grxq:layout)
 };	   
