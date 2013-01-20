@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.w3.org/1999/xhtml" xmlns:dotml="http://www.martin-loetzsch.de/DOTML">
 <!-- 
 File dotml2dot.xsl 
 Copyright 2002 - 2006 Martin Loetzsch
 Translates dotml documents into the native dot syntax.
 -->
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.w3.org/1999/xhtml" xmlns:dotml="http://www.martin-loetzsch.de/DOTML">
-	<xsl:output method="text"/>
 	<xsl:variable xml:space="preserve" name="graph-attributes">bgcolor fontcolor fontname fontsize label margin nodesep rankdir ranksep ratio size</xsl:variable>
 	<xsl:variable xml:space="preserve" name="cluster-attributes">bgcolor color fillcolor fontcolor fontname fontsize label labeljust labelloc style</xsl:variable>
   <xsl:variable xml:space="preserve" name="node-attributes">color fillcolor fixedsize fontcolor fontname fontsize height shape style URL width</xsl:variable>
@@ -16,12 +15,11 @@ Translates dotml documents into the native dot syntax.
 		<xsl:apply-templates/>
 	</xsl:template>
 	<xsl:template match="text()"/>
-	<xsl:template match="dotml:graph">digraph g {compound="true";<xsl:call-template name="copy-attributes">
+	<xsl:template match="dotml:graph"><dummy>digraph g {compound="true";<xsl:call-template name="copy-attributes">
 			<xsl:with-param name="separator" select="';'"/>
 			<xsl:with-param name="attributes" select="$graph-attributes"/>
 		</xsl:call-template>
-		<xsl:apply-templates/>}
-&lt;dot-filename&gt;<xsl:value-of select="@file-name"/>&lt;/dot-filename&gt;
+		<xsl:apply-templates/>}</dummy>
 </xsl:template>
 	<xsl:template match="dotml:sub-graph">subgraph sub_graph_<xsl:value-of select="count(preceding::dotml:sub-graph)"/>{rank="<xsl:value-of select="@rank"/>";<xsl:apply-templates/>}</xsl:template>
 	<xsl:template match="dotml:cluster">subgraph cluster_<xsl:value-of select="@id"/>{<xsl:call-template name="copy-attributes">

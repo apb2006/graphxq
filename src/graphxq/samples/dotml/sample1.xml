@@ -1,4 +1,4 @@
-<graph 	file-name="graphs/example_xabsl_option1" ranksep="0.3" nodesep="0.2">
+<graph 	xmlns="http://www.martin-loetzsch.de/DOTML"  ranksep="0.3" nodesep="0.2">
 	<cluster 	id="option" label="option handle-ball-at-left-and-right-border" fontname="Arial" fontcolor="#005A9C" fontsize="11" fillcolor="#F4F4F4" style="filled">
 		<sub-graph 	rank="same">
 			<node 	label="go\nto\nball" fontcolor="#005A9C" fontsize="11" style="filled" fillcolor="#FFFFFF" fontname="Arial" id="state_go_to_ball" shape="Mcircle"/>

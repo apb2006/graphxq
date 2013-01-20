@@ -38,7 +38,8 @@ declare function dot( $dot as xs:string*, $params as xs:string*) as node()*{
            else $gr:empty
 };
 
-declare %private function dot1( $dot as xs:string) as node(){
+declare %private function dot1( $dot as xs:string) as element(svg:svg)
+{
     let $fname:=$gr:tmpdir || random:uuid()
     let $junk:=file:write-text($fname,$dot)
     let $r:=proc:execute($gr:dotpath , ("-Tsvg",$fname))
@@ -77,6 +78,7 @@ declare %private function dot1( $dot as xs:string) as node(){
   </svg>
  
 };
+
 (:~
 :Layout one ore more graphs given in the GXL language and render them as SVG.
 : gxl2dot Test.gxl > Test.dot
