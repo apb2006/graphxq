@@ -1,6 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
 	onload="init(evt)" width="100%" height="100%" viewBox="0 0 400 400"
 	version="1.1" preserveAspectRatio="xMinYMin meet">
+	<!-- svg frame supporting dynamic svg load
+	 provides pan and zoom functionality -->
 	<script type="text/ecmascript"><![CDATA[
         var svgns = "http://www.w3.org/2000/svg";
         var svgRoot;
@@ -8,6 +10,7 @@
         var inPan=false;
         var stateOrigin; //start of pan
         var fitScale=zoomScale=1;
+        var cuthere; //node where svg is loaded
         
         function init(e) {
             svgRoot =  e.target;
@@ -65,7 +68,7 @@
                 window.addEventListener('DOMMouseScroll', onMouseWheel, false); // Others
 			
             
-            var cuthere=document.getElementById("cuthere");
+            cuthere=document.getElementById("gInsertSVG");
             cuthere.addEventListener ( 'DOMNodeInserted', onNodeInsert, false );
         };
         
@@ -164,7 +167,7 @@
             }
      ]]></script>
 	<rect x="0" y="0" width="100%" height="100%" fill="none" stroke-width="1" stroke="none"/>
-	<g id="cuthere" />
+	<g id="gInsertSVG" />
 
 	<rect x="0" y="0" width="100%" height="100%" fill="transparent" />
 	<g id="hud" transform="translate(10,10)">

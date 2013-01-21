@@ -126,9 +126,10 @@ declare
 function api-dotml($dotml ) as node()
 {
  let $dotml:=fn:parse-xml($dotml)
+ let $y:=fn:trace($dotml,"ff")
  let $x:=dotml:generate($dotml)
-(: let $svg:=dot2svg($x) :)
- return $x
+ let $svg:=dot2svg($x)  
+ return $svg
  
 };
 
@@ -161,7 +162,7 @@ declare %private function dot2svg($dot as xs:string) as node(){
 :)
 declare function render($template as xs:string,$locals){
  let $sidebar:=<div>
-     <a href="/graphxq/viewbox/viewBox.svg">viewbox work</a>
+     
      <ul>
         <div>Samples:</div>
         <li> <a href="dot?src=samples/dot/process.gv">process</a></li>

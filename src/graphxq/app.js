@@ -65,8 +65,8 @@ $(document).ready(function(){
 
 function getsvg(dl){
      var f=$("#dotForm").serializeArray()
-     var d=$("#frm-defaults").serializeArray()
-     console.log("#frm-default",d)
+     //var d=$("#frm-defaults").serializeArray()
+     //console.log("#frm-default",d)
 	// if(dl)f.push({"name":"dl","value":1})
 	 $.ajax({
              type:"POST",
@@ -79,7 +79,7 @@ function getsvg(dl){
                var data = oParser.parseFromString(str, "text/xml");
                 // http://stackoverflow.com/questions/3346106/accessing-a-dom-object-defined-in-an-external-svg-file
                 var n = document.importNode(data.documentElement,true);              
-                $("#cuthere").empty().append(n);
+                $("#gInsertSVG").empty().append(n);
 				$("#svgsrc").empty().text(str);
               },
  			 error:function(jqXHR, textStatus, errorThrown){

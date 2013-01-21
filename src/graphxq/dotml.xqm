@@ -10,9 +10,11 @@ import module namespace xslt="http://basex.org/modules/xslt";
 
 (:~ 
 : @return graphviz dot string
+: note xslt:transform can not return output text so result is wrapped
 :)
-declare function generate($dotml) as xs:string
+declare function generate($dotml)  as xs:string
 {
- xslt:transform($dotml, fn:resolve-uri( "dotml/dotml2dot.xsl")) 
+ let $d:=xslt:transform($dotml, fn:resolve-uri( "dotml/dotml2dot.xsl"))
+ return $d/fn:string() 
 };
 

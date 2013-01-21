@@ -19,6 +19,7 @@
 
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.1/jquery.min.js" type="text/javascript"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.2.2/bootstrap.min.js" type="text/javascript"></script>
+        <script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
         <script src="/graphxq/app.js" type="text/javascript"></script>
     <script type="text/javascript"><![CDATA[
           var _gaq = _gaq || [];
@@ -81,11 +82,12 @@
                 </ul>   
               </li>
             </ul>
-            <form class="pull-right  navbar-search" action="search">
-                        <input type="text" class="search-query span3" placeholder="Search"
-                            name="q" />
-                        <div class="icon-search"></div>
-                    </form>
+            <div class="btn-group pull-right">
+        <a href="##" rel="tooltip" title="Make the Directories side dominant" class="btn btn-mini" data-action="dirDom" data-placement="left"><i class="icon icon-indent-left"></i></a>
+        <a href="##" rel="tooltip" title="Make both sides equal" class="btn btn-mini" data-placement="left" data-action="equality"><i class="icon icon-resize-horizontal"></i></a>
+        <a href="##" rel="tooltip" title="Make the Documents side dominant" class="btn btn-mini" data-placement="left" data-action="fileDom"><i class="icon icon-indent-right"></i></a>
+        </div>
+           
                     <div class="btn-group pull-right" style="margin-top:0px">
                     {$usermenu}             
                                 

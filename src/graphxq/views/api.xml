@@ -1,7 +1,7 @@
 <div>
     <h1>About GraphXQ API</h1>
 	<p>
-		POST or GET <div>restxq/svg?dot=..</div>
+		POST or GET <code>restxq/graphxq/api/dotml?dot=..</code>
 	</p>
   
 </div>
