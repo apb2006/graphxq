@@ -23,6 +23,9 @@ body {
 }
 
 
+.navbar-fixed-top {
+    margin-bottom: 4px;
+}
 .quick-links {
     list-style: none outside none;
     margin: 0;
@@ -44,21 +47,6 @@ body {
     top: 5px;
 }
 
-/* XML verbatim */
-.xmlverb-default          { color: #333333; background-color: #ffffff;
-                            font-size: 10pt;
-                            font-family:"Courier New", Courier, mono; }
-.xmlverb-element-name     { color: #990000 }
-.xmlverb-element-nsprefix { color: #666600 }
-.xmlverb-attr-name        { color: #660000 }
-.xmlverb-attr-content     { color: #000099; font-weight: bold }
-.xmlverb-ns-name          { color: #666600 }
-.xmlverb-ns-uri           { color: #330099 }
-.xmlverb-text             { color: #000000; font-weight: bold }
-.xmlverb-comment          { color: #006600; font-style: italic }
-.xmlverb-pi-name          { color: #006600; font-style: italic }
-.xmlverb-pi-content       { color: #006666; font-style: italic }
-.xd                       { background-color: #cccccc; margin: 0px }
 
  #editor { 
         margin: 0;
@@ -69,45 +57,4 @@ body {
 		min-height:10em;
     }
  
- table.ret * th {
-    border: 1px solid white;
-    margin: 2px;
-    padding-left: 5px;
-    padding-right: 5px;
-    background-color: #BFCAEB;
-    text-align: left;
-}
- table.ret * td {
-    border: 1px solid white;
-    margin: 2px;
-    padding: 2px;
-    background-color: #EBEEF5;
-    vertical-align: top;
-    font-size: 9pt;
-}
-
-table.ret caption {
-    margin-top: 10px;
-    margin: 2px;
-    padding-left: 5px;
-    padding-right: 5px;
-    background-color: #EBEEF5;
-    text-align: left;
-}
-
-table.ret {
-    border-bottom: 1px solid #BFCAEB;
-    margin: 0px;
-    padding: 0px;
-}
-.break {
-	   word-break: break-all;
-	   -moz-hyphens: auto;
-       hyphens: auto;
-}
-.doctype{
-	display:inline-block;
-	width:6em;
-	text-align: center 
-}
-form.form-table label {text-align:right}
+ 

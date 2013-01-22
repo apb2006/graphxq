@@ -1,0 +1,10 @@
+<graph 	xmlns="http://www.martin-loetzsch.de/DOTML" 
+file-name="graphs/bgcolor" rankdir="LR" bgcolor="#80FF80">
+    <node 	id="a"/>
+    <cluster 	id="c1" bgcolor="#FF8080">
+        <node 	id="b"/>
+        <node 	id="c"/>
+        <edge 	from="b" to="c"/>
+    </cluster>
+    <edge 	from="a" to="b"/>
+</graph>

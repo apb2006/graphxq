@@ -16,6 +16,7 @@ import module namespace request = "http://exquery.org/ns/request";
 declare namespace svg= "http://www.w3.org/2000/svg";
 declare namespace rest = 'http://exquery.org/ns/restxq';
 
+(:~ shared page wrapper :)
 declare variable $grxq:layout:=fn:resolve-uri("views/layout.xml");
 
 (:~
@@ -24,15 +25,8 @@ declare variable $grxq:layout:=fn:resolve-uri("views/layout.xml");
 declare 
 %rest:GET %rest:path("graphxq") 
 %output:method("html") %output:version("5.0")
-%rest:form-param("dot","{$dot}","")
-%rest:form-param("url","{$url}") 
-function graphxq($dot,$url) {
-    let $edot:=if($url) then "" else fn:encode-for-uri($dot)
-    let $dot2:=getdot($dot,$url)
-    let $svg:=dot2svg($dot)
-    let $map:=map{"dot":=$dot,"url":=$url,"svg":=$svg,"edot":=$edot}
-    let $page:=render("views/page1.xml",$map)
-     return $page
+function about(){
+    render("views/about.xml",map{"title":="GraphXQ"})
 };
 
 (:~
@@ -70,9 +64,12 @@ declare
 function dotform($src){
     let $dot:= getdot("digraph {{a -> b}}",$src)
     let $svgwidget:=fn:doc("views/widget.svg")
+    let $toolbar:=fn:doc("views/toolbar.xml")
     let $map:=map{"list-shapes":=dotui:shapes(""),
                   "list-colors":=dotui:colors(""),
                   "svgwidget":=$svgwidget,
+                  "toolbar":=$toolbar,
+                  "title":="DOT editor",
                   "dot":=$dot}
     return render("views/dotform.xml",$map)
 };
@@ -80,40 +77,35 @@ function dotform($src){
 declare 
 %rest:GET %rest:path("graphxq/dotml")
 %output:method("html") %output:version("5.0")
-function dotmlform(){
-    render("views/dotmlform.xml",map{})
+%rest:form-param("src","{$src}")
+function dotmlform($src){
+    let $svgwidget:=fn:doc("views/widget.svg")
+    let $toolbar:=fn:doc("views/toolbar.xml")
+    let $default:=<graph xmlns="http://www.martin-loetzsch.de/DOTML"><node id="test"/></graph>
+    let $dotml:= getdotml($default ,$src)
+    let $dotml:= fn:serialize($dotml)
+    let $v:=map{ "svgwidget":=$svgwidget,
+                 "toolbar":=$toolbar,
+                 "title":="DOTML editor",
+                 "dotml":=$dotml}
+    return render("views/dotmlform.xml",$v)
 };
 
-(:~ static about page :)
-declare 
-%rest:GET %rest:path("graphxq/about")
-%output:method("html") %output:version("5.0")
-function about(){
-    render("views/about.xml",map{})
-};
+
 
 (:~ static api page :)
 declare 
 %rest:GET %rest:path("graphxq/api")
 %output:method("html") %output:version("5.0")
 function api(){
-    render("views/api.xml",map{})
-};
-
-declare 
-%rest:GET %rest:path("graphxq/search")
-%output:method("html") %output:version("5.0")
-%rest:form-param("q", "{$q}")
-function search($q ) {
- let $map:=map{"q":=$q}
- return render("views/search.xml",$map)
+    render("views/api.xml",map{"title":="API information"})
 };
 
 declare 
 %rest:GET %rest:path("graphxq/library")
 %output:method("html") %output:version("5.0")
 function library( ) {
- let $map:=map{ }
+ let $map:=map{"title":="Samples"}
  return render("views/library.xml",$map)
 };
 
@@ -137,15 +129,21 @@ function api-dotml($dotml ) as node()
 declare %private function getdot($dot as xs:string,$url) as xs:string{
  if($url) then
     try{fn:unparsed-text(fn:resolve-uri($url))} catch * { "digraph {{ failed to load remote }}" }
-else    
+  else    
     $dot         
 };
  
 (:~  if url is defined then treat as url and fetch else use dotml  :)
-declare %private function getdotml($dotml as xs:string,$url) as xs:string{
+declare %private function getdotml($dotml as node(),$url) as node()
+{
  if($url) then
-    try{fn:unparsed-text(fn:resolve-uri($url))} catch * { "digraph {{ failed to load remote }}" }
-else    
+    try{
+       fn:doc(fn:resolve-uri($url))
+    } catch * {
+       <graph xmlns="http://www.martin-loetzsch.de/DOTML">
+            <node id="fail"/>
+        </graph>   }
+  else    
     $dotml         
 };
  
@@ -161,18 +159,8 @@ declare %private function dot2svg($dot as xs:string) as node(){
 : @params locals map of page variables
 :)
 declare function render($template as xs:string,$locals){
- let $sidebar:=<div>
-     
-     <ul>
-        <div>Samples:</div>
-        <li> <a href="dot?src=samples/dot/process.gv">process</a></li>
-        <li><a href="dot?src=samples/dot/unix.gv">unix</a></li>
-        <li><a href="dot?src=samples/dot/root.gv">root (slow)</a></li>
-        <li><a href="dotml?src=samples/dotml/sample1.xml">dotml sample</a></li>
-      </ul> 
-    </div>
-    let $default:=map{"sidebar":=$sidebar ,
-                       "usermenu":=<div>users</div>,
+
+    let $default:=map{"usermenu":=<div>users</div>,
                        "title":=request:path(),
                        "messages":=()}
     let $locals:=map:new(($default,$locals))                   

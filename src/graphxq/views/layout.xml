@@ -49,49 +49,24 @@
 					</a>
 					
 					 <div class="nav-collapse collapse">
-            <ul class="nav">
-                <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                New
-                                <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="dot"><i class="icon-edit"></i> Dot</a>
-                                </li>
-                                <li>
-                                    <a href="dotml"><i class="icon-align-center"></i> DotML</a>
-                                </li>
-                            </ul>   
+            <ul class="nav">               
+                <li>
+                    <a href="dot"><i class="icon-edit"></i> Dot</a>
+                </li>
+                <li>
+                    <a href="dotml"><i class="icon-align-center"></i> DotML</a>
                 </li>
                <li >
-                <a href="library">Library</a>
-              </li>   
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                About
-                 <b class="caret"></b>
-                </a>
-                 <ul class="dropdown-menu">
-                    <li>
-                        <a href="about"><i class="icon-edit"></i> About</a>
-                    </li>
-                    <li>
-                        <a href="api"><i class="icon-align-center"></i> API</a>
-                    </li>
-                </ul>   
-              </li>
-            </ul>
-            <div class="btn-group pull-right">
-        <a href="##" rel="tooltip" title="Make the Directories side dominant" class="btn btn-mini" data-action="dirDom" data-placement="left"><i class="icon icon-indent-left"></i></a>
-        <a href="##" rel="tooltip" title="Make both sides equal" class="btn btn-mini" data-placement="left" data-action="equality"><i class="icon icon-resize-horizontal"></i></a>
-        <a href="##" rel="tooltip" title="Make the Documents side dominant" class="btn btn-mini" data-placement="left" data-action="fileDom"><i class="icon icon-indent-right"></i></a>
-        </div>
-           
-                    <div class="btn-group pull-right" style="margin-top:0px">
-                    {$usermenu}             
-                                
-                    </div>
+                <a href="library"><i class="icon-book"></i> Library</a>
+              </li> 
+              <li>
+                  <a href="api"><i class="icon-wrench"></i> API</a>
+              </li>               
+            </ul>         
+             <div class="btn-group pull-right" style="margin-top:0px">
+             {$usermenu}             
+                         
+             </div>
           </div>
 
 
@@ -101,8 +76,7 @@
 		</div>
 		<div class="container-fluid">
 			<div class="row-fluid">			
-				<div id="content" class="span10">{$body}</div>
-				<div id="sidebar" class="span2 well">{$sidebar}</div>
+				{$body}
 			</div>
 
 		</div>

@@ -1,53 +1,74 @@
 <div>
-<div >
-    <h1>About GraphXQ</h1>
-	<p>
-		This application provides a web interface to <a href="http://www.graphviz.org/">Graphviz</a>.
-	</p>
-    <p>	
-		The server side is written entirely in XQuery. It uses the 
-		<a href="http://basex.org" target="_blank">BaseX</a> implementation. <a
-			href="http://docs.basex.org/wiki/RESTXQ" target="_blank">RestXQ</a>
-		is used to map XQuery annotations to web server behavior.
-	</p>
-	<p>
-        This application includes DOTML developed by Martin Loetzsch 
-   (<a href="http://www.martin-loetzsch.de/DOTML" target="_blank">http://www.martin-loetzsch.de/DOTML</a>).
-   DotML is a XML based syntax for the input language of the 'Dot' graph drawing tool from the AT&amp;T GraphViz suite. It can be transformed to the native syntax of the 'Dot' tool using XSLT. 
+<div class="hero-unit">
+    <h1>GraphXQ</h1>
+	<p>A web interface to <a href="http://www.graphviz.org/" target="_blank">Graphviz</a>.
+        Graph descriptions can be entered in the 
+        <a href="http://www.graphviz.org/content/dot-language" target="_blank">Dot</a> language 
+        or in <a href="http://www.martin-loetzsch.de/DOTML" target="_blank">DOTML</a>. 
+        A REST interface is provided (<a href="api">API</a>) that enables SVG generation to be used as a service.</p>
+    </div>
+    
+ <div class="row">
+        <div class="span4">
+          <h2>Server</h2>
+  <p>The server side is written entirely in XQuery. It uses the 
+        <a href="http://basex.org" target="_blank">BaseX</a> implementation. <a
+            href="http://docs.basex.org/wiki/RESTXQ" target="_blank">RestXQ</a>
+        is used to map XQuery annotations to web server behavior.
     </p>
-	<p>The client side targets modern browsers. It was tested against Firefox 15 and Chrome 21.
-	</p>
-	
+     <p> The graphviz <code>dot</code> executable is used to generate SVG from the DOT source.
+        The resultant SVG is viewed in an interface that provides pan and zoom functionality.
+        The SVG may also be viewed standalone or downloaded.</p>
+    <p>This application includes DOTML developed by Martin Loetzsch.
+     DOTML is a XML based syntax for the input language of the 'Dot'.</p>
+        </div>
+        <div class="span4">
+          <h2>Client</h2>
+ <p>The client side targets modern browsers. It was tested against Firefox 15 and Chrome 21.
+    </p>
+    
     <p>Twitter <a href="http://twitter.github.com/bootstrap/index.html"
-			target="_blank">Bootstrap</a> is used for the client side styling. 
-	</p>
-	<p>Client libraries are loaded from CDN where possible. In particular
-	<a href="http://cdnjs.com"  target="_blank">cdnjs.com</a> is used.</p> 
-	<h2>Bugs</h2>
-<p>The SVG pan and zoom has problems, especially in Firefox. In part this maybe due
+            target="_blank">Bootstrap</a> is used for the client side styling. 
+    </p>
+    <p>Javascript libraries are loaded from CDN where possible. In particular
+    <a href="http://cdnjs.com"  target="_blank">cdnjs.com</a> is used.</p>
+    <p>The resultant SVG is viewed in an interface that provides pan and zoom functionality.
+        The SVG may also be viewed standalone or downloaded.</p>
+       </div>
+        <div class="span4">
+          <h2>Bugs</h2>
+ <p>The SVG pan and zoom has problems, especially in Firefox. In part this maybe due
 to firefox bugs</p>
 <p>For reference this shows how the SVG <a href="/graphxq/viewbox/viewBox.svg">viewbox</a>
 works.</p>
-	</div>
-	<ul class="quick-links">
-	<!-- 
-		<li><iframe class="github-btn"
-				src="http://markdotto.github.com/github-buttons/github-btn.html?user=apb2006&amp;repo=xqwebdoc&amp;type=watch&amp;count=true"
-				allowtransparency="true" scrolling="0" width="112px" frameborder="0"
-				height="20px"></iframe></li>
-		<li><iframe class="github-btn"
-				src="http://markdotto.github.com/github-buttons/github-btn.html?user=apb2006&amp;repo=xqwebdoc&amp;type=fork&amp;count=true"
-				allowtransparency="true" scrolling="0" width="98px" frameborder="0"
-				height="20px"></iframe></li>
-		 -->		
-		<li class="follow-btn"><iframe title="Twitter Follow Button"
-				style="width: 237px; height: 20px;" class="twitter-follow-button"
-				src="http://platform.twitter.com/widgets/follow_button.html?id=twitter-widget-2&amp;lang=en&amp;screen_name=apb1704&amp;show_count=true&amp;show_screen_name=true&amp;size=m"
-				allowtransparency="true" scrolling="no" frameborder="0"></iframe></li>
-		<li class="tweet-btn"><iframe title="Twitter Tweet Button"
-				style="width: 106px; height: 20px;"
-				class="twitter-share-button twitter-count-horizontal"
-				src="http://platform.twitter.com/widgets/tweet_button.html?count=horizontal&amp;id=twitter-widget-0&amp;lang=en&amp;original_referer=https%3A%2F%2Fgithub.com%2Fapb2006%2Fgraphxq&amp;size=m&amp;text=graphxq #xquery&amp;url=https%3A%2F%2Fgithub.com%2Fapb2006%2Fxqwebdoc&amp;via=apb1704"
-				allowtransparency="true" scrolling="no" frameborder="0"></iframe></li>
-	</ul>
+        </div>
+      </div>
+
+      <hr/>
+
+      <footer>
+        <p>&#169; Andy Bunce 2013</p>
+        <ul class="quick-links">
+    <!-- 
+        <li><iframe class="github-btn"
+                src="http://markdotto.github.com/github-buttons/github-btn.html?user=apb2006&amp;repo=xqwebdoc&amp;type=watch&amp;count=true"
+                allowtransparency="true" scrolling="0" width="112px" frameborder="0"
+                height="20px"></iframe></li>
+        <li><iframe class="github-btn"
+                src="http://markdotto.github.com/github-buttons/github-btn.html?user=apb2006&amp;repo=xqwebdoc&amp;type=fork&amp;count=true"
+                allowtransparency="true" scrolling="0" width="98px" frameborder="0"
+                height="20px"></iframe></li>
+         -->        
+        <li class="follow-btn"><iframe title="Twitter Follow Button"
+                style="width: 237px; height: 20px;" class="twitter-follow-button"
+                src="http://platform.twitter.com/widgets/follow_button.html?id=twitter-widget-2&amp;lang=en&amp;screen_name=apb1704&amp;show_count=true&amp;show_screen_name=true&amp;size=m"
+                allowtransparency="true" scrolling="no" frameborder="0"></iframe></li>
+        <li class="tweet-btn"><iframe title="Twitter Tweet Button"
+                style="width: 106px; height: 20px;"
+                class="twitter-share-button twitter-count-horizontal"
+                src="http://platform.twitter.com/widgets/tweet_button.html?count=horizontal&amp;id=twitter-widget-0&amp;lang=en&amp;original_referer=https%3A%2F%2Fgithub.com%2Fapb2006%2Fgraphxq&amp;size=m&amp;text=graphxq #xquery&amp;url=https%3A%2F%2Fgithub.com%2Fapb2006%2Fxqwebdoc&amp;via=apb1704"
+                allowtransparency="true" scrolling="no" frameborder="0"></iframe></li>
+    </ul>
+      </footer>
+	
 </div>

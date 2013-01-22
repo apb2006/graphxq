@@ -1,6 +1,0 @@
-<div>
-<!-- q,collection, hits -->
-    <h1>No Search Results yet</h1>
-        <p><b>Search results for: </b>{$q} <b> In collection: </b></p>
-     <ol></ol>
-    </div> 

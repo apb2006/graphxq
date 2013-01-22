@@ -45,6 +45,21 @@ jQuery(function($) { $.extend({
     }
 }); });
 
+$(function(){
+$('a[data-action="lDom"]').click(function (){
+    $("#leftPane").css('display','inline').removeAttr('class').addClass("span12");
+    $("#rightPane").removeAttr('class').css("display","none");
+
+});
+$('a[data-action="equality"]').click(function (){
+    $("#leftPane").css('display','inline').removeAttr('class').addClass("span6");
+    $("#rightPane").css('display','inline').removeAttr('class').addClass("span6");
+});
+$('a[data-action="rDom"]').click(function (){
+    $("#rightPane").css('display','inline').removeAttr('class').addClass("span12");
+    $("#leftPane").removeAttr('class').css("display","none");
+});
+});
 
 $(document).ready(function(){
    $("#bnup").on("click",getsvg);

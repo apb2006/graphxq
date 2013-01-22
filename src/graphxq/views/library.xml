@@ -1,5 +1,26 @@
 <div>
-<!-- q,collection, hits -->
-    <h1>No Library yet</h1>
-         
-    </div> 
+	<!-- q,collection, hits -->
+	<h2>Samples</h2>
+	<ul>
+		<li>
+			<a href="dot?src=samples/dot/process.gv">process</a>
+			(dot)
+		</li>
+		<li>
+			<a href="dot?src=samples/dot/unix.gv">unix</a>
+			(dot)
+		</li>
+		<li>
+			<a href="dot?src=samples/dot/root.gv">root (slow)</a>
+			(dot)
+		</li>
+		<li>
+			<a href="dotml?src=samples/dotml/sample1.xml">dotml </a>
+			(dotml)
+		</li>
+		<li>
+			<a href="dotml?src=samples/dotml/cluster.xml"> cluster</a>
+			(dotml)
+		</li>
+	</ul>
+</div> 
