@@ -87,6 +87,7 @@ function dotmlform($src){
     let $v:=map{ "svgwidget":=$svgwidget,
                  "toolbar":=$toolbar,
                  "title":="DOTML editor",
+                 "bodyclass":="h100",
                  "dotml":=$dotml}
     return render("views/dotmlform.xml",$v)
 };
@@ -104,8 +105,10 @@ function api(){
 declare 
 %rest:GET %rest:path("graphxq/library")
 %output:method("html") %output:version("5.0")
-function library( ) {
- let $map:=map{"title":="Samples"}
+function library(){
+ let $lib:=fn:doc("data/library.xml")
+ let $map:=map{"title":="Samples",
+              "count":=fn:count($lib//item)}
  return render("views/library.xml",$map)
 };
 
@@ -115,8 +118,7 @@ function library( ) {
 declare 
 %rest:POST %rest:path("graphxq/api/dotml")
 %rest:form-param("dotml","{$dotml}")
-function api-dotml($dotml ) as node()
-{
+function api-dotml($dotml ) as node(){
  let $dotml:=fn:parse-xml($dotml)
  let $y:=fn:trace($dotml,"ff")
  let $x:=dotml:generate($dotml)
@@ -134,8 +136,7 @@ declare %private function getdot($dot as xs:string,$url) as xs:string{
 };
  
 (:~  if url is defined then treat as url and fetch else use dotml  :)
-declare %private function getdotml($dotml as node(),$url) as node()
-{
+declare %private function getdotml($dotml as node(),$url) as node(){
  if($url) then
     try{
        fn:doc(fn:resolve-uri($url))
@@ -153,16 +154,22 @@ declare %private function dot2svg($dot as xs:string) as node(){
     return   gr:autosize($svgx) 
 };                     
 
+(:~ css class to hightlight current page :)
+declare function active-link($path as xs:string,$page as xs:string) as xs:string{
+    if(fn:ends-with($path,$page)) then "active" else ""
+};  
+
 (:~ 
 : Render html page
 : @param template path to page template 
 : @params locals map of page variables
 :)
 declare function render($template as xs:string,$locals){
-
+    let $path:=request:path()
     let $default:=map{"usermenu":=<div>users</div>,
                        "title":=request:path(),
-                       "messages":=()}
+                       "active-link":=active-link($path,?), (: *** FAILS IF request:path() :)
+                       "bodyclass":=""}
     let $locals:=map:new(($default,$locals))                   
     return txq:render(fn:resolve-uri($template),$locals,$grxq:layout)
 };       

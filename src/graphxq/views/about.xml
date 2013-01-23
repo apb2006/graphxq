@@ -10,19 +10,6 @@
     
  <div class="row">
         <div class="span4">
-          <h2>Server</h2>
-  <p>The server side is written entirely in XQuery. It uses the 
-        <a href="http://basex.org" target="_blank">BaseX</a> implementation. <a
-            href="http://docs.basex.org/wiki/RESTXQ" target="_blank">RestXQ</a>
-        is used to map XQuery annotations to web server behavior.
-    </p>
-     <p> The graphviz <code>dot</code> executable is used to generate SVG from the DOT source.
-        The resultant SVG is viewed in an interface that provides pan and zoom functionality.
-        The SVG may also be viewed standalone or downloaded.</p>
-    <p>This application includes DOTML developed by Martin Loetzsch.
-     DOTML is a XML based syntax for the input language of the 'Dot'.</p>
-        </div>
-        <div class="span4">
           <h2>Client</h2>
  <p>The client side targets modern browsers. It was tested against Firefox 15 and Chrome 21.
     </p>
@@ -35,12 +22,28 @@
     <p>The resultant SVG is viewed in an interface that provides pan and zoom functionality.
         The SVG may also be viewed standalone or downloaded.</p>
        </div>
+               <div class="span4">
+          <h2>Server</h2>
+  <p>The server side is written entirely in XQuery. It uses the 
+        <a href="http://basex.org" target="_blank">BaseX</a> implementation. <a
+            href="http://docs.basex.org/wiki/RESTXQ" target="_blank">RestXQ</a>
+        is used to map XQuery annotations to web server behavior.
+    </p>
+     <p> The graphviz <code>dot</code> executable is used to generate SVG from the DOT source.
+        The resultant SVG is viewed in an interface that provides pan and zoom functionality.
+        The SVG may also be viewed standalone or downloaded.</p>
+    <p>This application includes an XSLT transform to convert <code>DOTML</code> to 
+    <code>dot</code> developed by Martin Loetzsch.
+     <a href="http://www.martin-loetzsch.de/DOTML" target="_blank">DOTML</a>
+     is a XML based syntax for the input language of the 'Dot'.</p>
+        </div>
         <div class="span4">
-          <h2>Bugs</h2>
+          <h2>Todo</h2>
  <p>The SVG pan and zoom has problems, especially in Firefox. In part this maybe due
 to firefox bugs</p>
 <p>For reference this shows how the SVG <a href="/graphxq/viewbox/viewBox.svg">viewbox</a>
-works.</p>
+works. See also <a href="http://alzt.tau.ac.il/~dagan/tools/#zoom">here</a>.
+</p>
         </div>
       </div>
 

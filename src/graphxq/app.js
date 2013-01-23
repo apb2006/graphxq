@@ -63,9 +63,11 @@ $('a[data-action="rDom"]').click(function (){
 
 $(document).ready(function(){
    $("#bnup").on("click",getsvg);
-   $("#bnsvg").on("click",function(){ $("#dotForm").submit()});
+   $("#bnsvg").on("click",function(){ $("#editForm").submit()});
    $("#bndn").on("click",function(){getsvg(true)});
    $("#dot").on("keyup",getsvg);
+   $("#bnxml").on("click",function(){$("#svgdiv,#svgsrc").toggle()});
+   
    var resize=function(){
      var h=$(window).height();
      $('.extend').each(function(){
@@ -79,13 +81,13 @@ $(document).ready(function(){
 });
 
 function getsvg(dl){
-     var f=$("#dotForm").serializeArray()
+     var f=$("#editForm").serializeArray()
      //var d=$("#frm-defaults").serializeArray()
      //console.log("#frm-default",d)
 	// if(dl)f.push({"name":"dl","value":1})
 	 $.ajax({
              type:"POST",
-			 url:"svg",
+			 url:$("#editForm").attr("action"),
              data:f,
 			 dataType: "text",
              success: function(str){

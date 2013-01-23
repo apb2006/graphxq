@@ -1,0 +1,23 @@
+<items>
+	<item>
+		<title>Process</title>
+		<url type="dot">samples/dot/process.gv</url>
+		(dot)
+	</item>
+	<item>
+		<title>Unix</title>
+		<url type="dot">samples/dot/unix.gv</url>
+	</item>
+	<item>
+		<title>Root</title>
+		<url type="dot">samples/dot/root.gv</url>
+	</item>
+	<item>
+		<title>Sample</title>
+		<url type="dotml">samples/dotml/sample1.xml</url>
+	</item>
+	<item>
+		<title>Cluster</title>
+		<url type="dotml">samples/dotml/cluster.xml</url>
+	</item>
+</items>

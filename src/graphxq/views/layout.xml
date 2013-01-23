@@ -34,7 +34,7 @@
           })();
         ]]></script>
 	</head>
-	<body>
+	<body class="{$bodyclass}">
 		<div class="navbar navbar-fixed-top " data-dropdown="dropdown">
 			<div class="navbar-inner">
 				<div class="container">
@@ -43,23 +43,23 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</a>
-					<a href="." class="brand" title="Version 0.1.0">
+					<a href="." class="brand" title="Version 0.3.0">
 						<img src="/graphxq/graphxq2.png" />
 						graphXQ
 					</a>
 					
 					 <div class="nav-collapse collapse">
             <ul class="nav">               
-                <li>
-                    <a href="dot"><i class="icon-edit"></i> Dot</a>
+                <li class="{$active-link('dot')}">
+                    <a href="dot" rel="tooltip" title="Define a graph in Dot notation" ><i class="icon-edit"></i> Dot</a>
                 </li>
-                <li>
+                <li class="{$active-link('dotml')}">
                     <a href="dotml"><i class="icon-align-center"></i> DotML</a>
                 </li>
-               <li >
+               <li class="{$active-link('library')}">
                 <a href="library"><i class="icon-book"></i> Library</a>
               </li> 
-              <li>
+              <li class="{$active-link('api')}">
                   <a href="api"><i class="icon-wrench"></i> API</a>
               </li>               
             </ul>         

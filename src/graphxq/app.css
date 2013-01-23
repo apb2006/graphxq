@@ -7,6 +7,9 @@ body {
       padding-top: 0;
     }
 }
+.h100{
+  height:100%;
+}
 /* search bar icon */
 .navbar-search .search-query {
     padding-left: 29px;
@@ -25,26 +28,6 @@ body {
 
 .navbar-fixed-top {
     margin-bottom: 4px;
-}
-.quick-links {
-    list-style: none outside none;
-    margin: 0;
-    min-height: 30px;
-    overflow: hidden;
-    padding: 5px 20px;
-    text-align: center;
-}
-.quick-links:first-child {
-    min-height: 0;
-}
-.quick-links li {
-    color: #999999;
-    display: inline;
-    margin: 0 8px;
-}
-.quick-links .github-btn, .quick-links .tweet-btn, .quick-links .follow-btn {
-    position: relative;
-    top: 5px;
 }
 
 
