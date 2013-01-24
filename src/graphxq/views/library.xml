@@ -1,45 +1,6 @@
 <div>
-    <!-- q,collection, hits -->
-    <h2>Samples {$count}</h2>
-    <ul>
-        <li>
-            <a href="dot?src=samples/dot/process.gv">process</a>
-			(dot)
-        </li>
-        <li>
-            <a href="dot?src=samples/dot/unix.gv">unix</a>
-			(dot)
-        </li>
-        <li>
-            <a href="dot?src=samples/dot/root.gv">root (slow)</a>
-			(dot)
-        </li>
-        <li>
-            <a href="dotml?src=samples/dotml/sample1.xml">dotml </a>
-			(dotml)
-        </li>
-        <li>
-            <a href="dotml?src=samples/dotml/cluster.xml"> cluster</a>
-			(dotml)
-        </li>
-    </ul>
-     <h2>Samples</h2>
-    <div class="media well">
-        <a class="pull-left" href="#">
-            <img class="media-object" src="/graphxq/graphxq.png"/>
-        </a>
-        <div class="media-body">
-            <h4 class="media-heading">Title</h4>
-     Description....
-        </div>
-    </div>
-    <div class="media well">
-        <a class="pull-left" href="#">
-            <img class="media-object" src="/graphxq/dotml.png"/>
-        </a>
-        <div class="media-body">
-            <h4 class="media-heading">Title2</h4>
-     Description....
-        </div>
-    </div>
+     <h2>Samples ({fn:count($items/item )})</h2>
+     <ul class=" thumbnails ">
+     {$partial("item1.xml","item",$items/item)}
+     </ul>
 </div> 

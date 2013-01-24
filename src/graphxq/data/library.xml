@@ -2,22 +2,26 @@
 	<item>
 		<title>Process</title>
 		<url type="dot">samples/dot/process.gv</url>
-		(dot)
+		<description>parallel process sequence</description>
 	</item>
 	<item>
 		<title>Unix</title>
 		<url type="dot">samples/dot/unix.gv</url>
+        <description>Evolution of UNIX.</description>
 	</item>
 	<item>
 		<title>Root</title>
 		<url type="dot">samples/dot/root.gv</url>
+        <description>Very large and slow.</description>
 	</item>
 	<item>
 		<title>Sample</title>
 		<url type="dotml">samples/dotml/sample1.xml</url>
+         <description>State machine.</description>
 	</item>
 	<item>
 		<title>Cluster</title>
 		<url type="dotml">samples/dotml/cluster.xml</url>
+         <description>Simple cluster.</description>
 	</item>
 </items>

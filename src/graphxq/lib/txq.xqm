@@ -42,6 +42,6 @@ declare function render($template as xs:string,$map as map(*),$layout as xs:stri
 declare function partial($part as xs:string,$name,$seq,$map,$base){
   for $s in $seq
   let $map:=map:new(($map,map{$name:=$s}))
-  return render($map,fn:resolve-uri($part,$base))  
+  return render(fn:resolve-uri($part,$base),$map)  
 };
 

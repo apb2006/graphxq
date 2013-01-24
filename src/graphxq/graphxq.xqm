@@ -41,16 +41,8 @@ declare
 function graphxq-svg($dot,$url,$dl) {
     let $dot2:=getdot($dot,$url)
     let $svg:=dot2svg($dot2)
-    let $resp:=<rest:response>
-                <http:response>
-                    <http:header name="Access-Control-Allow-Origin" value="*"/>
-                {if($dl)
-                then <http:header name="Content-Disposition" value='attachment;filename="graphxq.svg"'/>
-                else ()}
-                </http:response>
-            </rest:response>
-    
-    return ($resp,$svg) 
+    let $fname:=if($dl)then "dot.svg" else ()
+    return (headers($fname),$svg) 
 };
 
 (:~
@@ -102,13 +94,41 @@ function api(){
     render("views/api.xml",map{"title":="API information"})
 };
 
+(:~ static ace page :)
+declare 
+%rest:GET %rest:path("graphxq/ace")
+%output:method("html") %output:version("5.0")
+function ace(){
+    let $svgwidget:=fn:doc("views/widget.svg")
+    let $toolbar:=fn:doc("views/toolbar.xml")
+    let $v:=map{ "svgwidget":=$svgwidget,
+                 "toolbar":=$toolbar,
+                 "title":="DOTML editor",
+                 "bodyclass":="h100",
+                 "dotml":="gg"}
+    return render("views/ace.xml",$v)
+};
+
+(:~  js worker same origin : https://github.com/ajaxorg/ace/issues/1161 :)
+declare 
+%rest:GET %rest:path("graphxq/ace/worker")
+%rest:form-param("w","{$w}")
+%output:media-type("application/javascript")
+%output:method("text")
+function ace-worker($w){
+    let  $a:="https://raw.github.com/ajaxorg/ace-builds/master/src-min-noconflict" || $w
+    return http:send-request(<http:send-request method="GET"/>,$a)[2]
+};
+
 declare 
 %rest:GET %rest:path("graphxq/library")
 %output:method("html") %output:version("5.0")
 function library(){
  let $lib:=fn:doc("data/library.xml")
  let $map:=map{"title":="Samples",
-              "count":=fn:count($lib//item)}
+              "items":=$lib//items,
+              "url":=function($item){fn:concat($item/url/@type,'?src=',$item/url)}
+              }
  return render("views/library.xml",$map)
 };
 
@@ -118,13 +138,13 @@ function library(){
 declare 
 %rest:POST %rest:path("graphxq/api/dotml")
 %rest:form-param("dotml","{$dotml}")
-function api-dotml($dotml ) as node(){
+%rest:form-param("dl","{$dl}")
+function api-dotml($dotml,$dl ) {
  let $dotml:=fn:parse-xml($dotml)
- let $y:=fn:trace($dotml,"ff")
  let $x:=dotml:generate($dotml)
- let $svg:=dot2svg($x)  
- return $svg
- 
+ let $svg:=dot2svg($x)
+ let $fname:=if($dl)then "dotml.svg" else ()
+ return (headers($fname),$svg)  
 };
 
 (:~  if url is defined then treat as url and fetch else use dot  :)
@@ -147,7 +167,17 @@ declare %private function getdotml($dotml as node(),$url) as node(){
   else    
     $dotml         
 };
- 
+(:~ CORS header with download option :) 
+declare function headers($attachment){
+<rest:response>
+    <http:response>
+        <http:header name="Access-Control-Allow-Origin" value="*"/>
+    {if($attachment)
+    then <http:header name="Content-Disposition" value='attachment;filename="{$attachment}"'/>
+    else ()}
+    </http:response>
+</rest:response>
+};            
 (:~ Generate svg from dot :)
 declare %private function dot2svg($dot as xs:string) as node(){
     let $svgx:=gr:dot($dot,())

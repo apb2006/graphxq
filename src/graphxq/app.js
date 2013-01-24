@@ -1,73 +1,47 @@
 // common app js
-// sidebar
-
-// http://stackoverflow.com/questions/4583703/jquery-post-request-not-ajax
-jQuery(function($) { $.extend({
-    form: function(url, data, method) {
-        if (method == null) method = 'POST';
-        if (data == null) data = {};
-
-        var form = $('<form>').attr({
-            method: method,
-            action: url
-         }).css({
-            display: 'none'
-         });
-
-        var addData = function(name, data) {
-            if ($.isArray(data)) {
-                for (var i = 0; i < data.length; i++) {
-                    var value = data[i];
-                    addData(name + '[]', value);
-                }
-            } else if (typeof data === 'object') {
-                for (var key in data) {
-                    if (data.hasOwnProperty(key)) {
-                        addData(name + '[' + key + ']', data[key]);
-                    }
-                }
-            } else if (data != null) {
-                form.append($('<input>').attr({
-                  type: 'hidden',
-                  name: String(name),
-                  value: String(data)
-                }));
-            }
-        };
-
-        for (var key in data) {
-            if (data.hasOwnProperty(key)) {
-                addData(key, data[key]);
-            }
-        }
-
-        return form.appendTo('body');
-    }
-}); });
-
-$(function(){
-$('a[data-action="lDom"]').click(function (){
-    $("#leftPane").css('display','inline').removeAttr('class').addClass("span12");
-    $("#rightPane").removeAttr('class').css("display","none");
-
-});
-$('a[data-action="equality"]').click(function (){
-    $("#leftPane").css('display','inline').removeAttr('class').addClass("span6");
-    $("#rightPane").css('display','inline').removeAttr('class').addClass("span6");
-});
-$('a[data-action="rDom"]').click(function (){
-    $("#rightPane").css('display','inline').removeAttr('class').addClass("span12");
-    $("#leftPane").removeAttr('class').css("display","none");
-});
-});
-
+function throttle(fn, delay) {
+  var timer = null;
+  return function () {
+    var context = this, args = arguments;
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      fn.apply(context, args);
+    }, delay);
+  };
+} 
 $(document).ready(function(){
+    if($("#editForm").length)setupEdit()
+});
+function setupEdit(){
+    // toolbar buttons
+    $('a[data-action="lDom"]').click(function (){
+        $("#leftPane").css('display','inline').removeAttr('class').addClass("span12");
+        $("#rightPane").removeAttr('class').css("display","none");
+
+    });
+    $('a[data-action="equality"]').click(function (){
+        $("#leftPane").css('display','inline').removeAttr('class').addClass("span6");
+        $("#rightPane").css('display','inline').removeAttr('class').addClass("span6");
+    });
+    $('a[data-action="rDom"]').click(function (){
+        $("#rightPane").css('display','inline').removeAttr('class').addClass("span12");
+        $("#leftPane").removeAttr('class').css("display","none");
+    });
+
+   var sub=function(download){
+       $('input[name=dl]').attr('checked', download);
+       $("#editForm").submit();       
+    };   
    $("#bnup").on("click",getsvg);
-   $("#bnsvg").on("click",function(){ $("#editForm").submit()});
-   $("#bndn").on("click",function(){getsvg(true)});
-   $("#dot").on("keyup",getsvg);
-   $("#bnxml").on("click",function(){$("#svgdiv,#svgsrc").toggle()});
-   
+   $("#bnsvg").on("click",function(){sub(false)});
+   $("#bndn").on("click",function(){sub(true)});
+   $("#dot").on("keyup",throttle(getsvg,300));
+   $("#bnxml").on("click",function(){
+                            $("#svgdiv,#svgsrc").toggle()
+                            });
+    $("#bnclear").on("click",function(){
+                              $("#dot").val("digraph title {\n\n}")
+                            });
    var resize=function(){
      var h=$(window).height();
      $('.extend').each(function(){
@@ -77,14 +51,13 @@ $(document).ready(function(){
 	 });
 	};  
     $(window).resize(resize);
-    resize();	
-});
+    resize();
+    getsvg()	
+};
 
-function getsvg(dl){
+function getsvg(){
      var f=$("#editForm").serializeArray()
-     //var d=$("#frm-defaults").serializeArray()
-     //console.log("#frm-default",d)
-	// if(dl)f.push({"name":"dl","value":1})
+     var d0=+new Date()
 	 $.ajax({
              type:"POST",
 			 url:$("#editForm").attr("action"),
@@ -92,6 +65,8 @@ function getsvg(dl){
 			 dataType: "text",
              success: function(str){
                // console.log(data)
+               var d=(new Date())-d0;
+               console.log("svg time:",d);
 			   var oParser = new DOMParser();
                var data = oParser.parseFromString(str, "text/xml");
                 // http://stackoverflow.com/questions/3346106/accessing-a-dom-object-defined-in-an-external-svg-file

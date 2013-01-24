@@ -52,11 +52,7 @@ aria-labelledby="myModalLabel" aria-hidden="true">
 				class="well ">
 					<textarea id="dot" name="dot" rows="100"
 					style="width:90%;overflow:scroll">{$dot}</textarea>
-				
-				<label class="checkbox">
-					<input name="dl" type="checkbox" />
-					Download
-				</label>
+					<input name="dl" type="checkbox" style="display:hidden"/>
 			</form>
 				
 		</div>
@@ -66,10 +62,5 @@ aria-labelledby="myModalLabel" aria-hidden="true">
             <pre style="display: none" id="svgsrc">(no svg loaded)</pre>
 		</div>
 
-		<script type="text/javascript">
-			$(document).ready(function(){{
-			getsvg(false)
-			}})
-		</script>
 	</div>
 </div>
