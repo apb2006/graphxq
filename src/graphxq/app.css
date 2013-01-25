@@ -25,19 +25,20 @@ body {
     padding-left: 30px;
 }
 
-
+/* http://dylemma.io/post/4 */
 .navbar-fixed-top {
     margin-bottom: 4px;
 }
 
-
- #editor { 
-        margin: 0;
-        padding: 0;
-        position: relative;
-         
-        width:100%;
-		min-height:10em;
+.ace-container{
+ position: relative;
+}
+ .ace { 
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     }
  
  

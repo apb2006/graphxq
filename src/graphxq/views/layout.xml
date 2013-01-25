@@ -35,7 +35,7 @@
         ]]></script>
 	</head>
 	<body class="{$bodyclass}">
-		<div class="navbar navbar-fixed-top " data-dropdown="dropdown">
+		<div class="navbar navbar-fixed-top navbar-inverse" data-dropdown="dropdown">
 			<div class="navbar-inner">
 				<div class="container">
 					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -53,16 +53,20 @@
                 <li class="{$active-link('dot')}">
                     <a href="dot" rel="tooltip" title="Define a graph in Dot notation" ><i class="icon-edit"></i> Dot</a>
                 </li>
+
                 <li class="{$active-link('dotml')}">
                     <a href="dotml"><i class="icon-align-center"></i> DotML</a>
                 </li>
+
                <li class="{$active-link('library')}">
                 <a href="library"><i class="icon-book"></i> Library</a>
               </li> 
+
               <li class="{$active-link('api')}">
                   <a href="api"><i class="icon-wrench"></i> API</a>
               </li>
-            <li class="{$active-link('api')}">
+      
+            <li class="{$active-link('ace')}">
                   <a href="ace"><i class="icon-wrench"></i> Ace</a>
               </li>                  
             </ul>         

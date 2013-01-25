@@ -109,16 +109,6 @@ function ace(){
     return render("views/ace.xml",$v)
 };
 
-(:~  js worker same origin : https://github.com/ajaxorg/ace/issues/1161 :)
-declare 
-%rest:GET %rest:path("graphxq/ace/worker")
-%rest:form-param("w","{$w}")
-%output:media-type("application/javascript")
-%output:method("text")
-function ace-worker($w){
-    let  $a:="https://raw.github.com/ajaxorg/ace-builds/master/src-min-noconflict" || $w
-    return http:send-request(<http:send-request method="GET"/>,$a)[2]
-};
 
 declare 
 %rest:GET %rest:path("graphxq/library")
@@ -140,6 +130,7 @@ declare
 %rest:form-param("dotml","{$dotml}")
 %rest:form-param("dl","{$dl}")
 function api-dotml($dotml,$dl ) {
+ let $dotml:=fn:trace($dotml,"dot: ")
  let $dotml:=fn:parse-xml($dotml)
  let $x:=dotml:generate($dotml)
  let $svg:=dot2svg($x)

@@ -47,7 +47,7 @@
     <div class="btn-group pull-right">
     	
     <button id="bnxml" class="btn btn-mini" data-toggle="button" title="Toggle SVG graphic and text">
-			<i class="icon-text-width"></i>
+			<i class="icon-eye-close"></i>
 			SVG text
 		</button>
     </div>

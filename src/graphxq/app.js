@@ -1,33 +1,46 @@
 // common app js
-function throttle(fn, delay) {
-  var timer = null;
-  return function () {
-    var context = this, args = arguments;
-    clearTimeout(timer);
-    timer = setTimeout(function () {
-      fn.apply(context, args);
-    }, delay);
-  };
-} 
+var resize;
+ 
 $(document).ready(function(){
-    if($("#editForm").length)setupEdit()
+    if($("#editForm").length){
+    setupEdit()
+    };
+      resize=function(){
+     var h=$(window).height();
+     $('.extend').not(':hidden').each(function(){
+	  var j=$(this)
+	   var top=j.offset();
+	   j.height(h-top.top-10)
+       console.log("resize",j)
+	 });
+      $('.ace').each(function(){
+      
+      console.log("acerrrr",$(this))
+      ace.edit($(this).attr('id'))
+      }) 
+	};  
+    $(window).resize(resize);
+    resize();
 });
 function setupEdit(){
     // toolbar buttons
     $('a[data-action="lDom"]').click(function (){
         $("#leftPane").css('display','inline').removeAttr('class').addClass("span12");
         $("#rightPane").removeAttr('class').css("display","none");
+        resize();
 
     });
     $('a[data-action="equality"]').click(function (){
         $("#leftPane").css('display','inline').removeAttr('class').addClass("span6");
         $("#rightPane").css('display','inline').removeAttr('class').addClass("span6");
+        resize();
     });
     $('a[data-action="rDom"]').click(function (){
         $("#rightPane").css('display','inline').removeAttr('class').addClass("span12");
         $("#leftPane").removeAttr('class').css("display","none");
+        resize();
     });
-
+    acediv("svgsrc2","svg",true);
    var sub=function(download){
        $('input[name=dl]').attr('checked', download);
        $("#editForm").submit();       
@@ -35,23 +48,16 @@ function setupEdit(){
    $("#bnup").on("click",getsvg);
    $("#bnsvg").on("click",function(){sub(false)});
    $("#bndn").on("click",function(){sub(true)});
-   $("#dot").on("keyup",throttle(getsvg,300));
+   $("#dot").on("keyup",throttle(getsvg,250));
    $("#bnxml").on("click",function(){
                             $("#svgdiv,#svgsrc").toggle()
+                            resize();
                             });
     $("#bnclear").on("click",function(){
-                              $("#dot").val("digraph title {\n\n}")
-                            });
-   var resize=function(){
-     var h=$(window).height();
-     $('.extend').each(function(){
-	  var j=$(this)
-	   var top=j.offset();
-	   j.height(h-top.top-10)
-	 });
-	};  
-    $(window).resize(resize);
-    resize();
+                              $("#dot").val(
+                              "digraph title {\n bgcolor=seashell\n node[shape=circle,style=filled,fillcolor=lightblue]\n\n}"
+                              )
+           });
     getsvg()	
 };
 
@@ -72,7 +78,9 @@ function getsvg(){
                 // http://stackoverflow.com/questions/3346106/accessing-a-dom-object-defined-in-an-external-svg-file
                 var n = document.importNode(data.documentElement,true);              
                 $("#gInsertSVG").empty().append(n);
-				$("#svgsrc").empty().text(str);
+				ace.edit("svgsrc2").setValue(str,1);
+                //ace.edit("svgsrc2").selection.clear();
+  
               },
  			 error:function(jqXHR, textStatus, errorThrown){
  				console.log("ajax error: "+textStatus + errorThrown);
@@ -94,4 +102,25 @@ function dotit(){
 	var t=f1.dotBody.value;
 	sdot+=t+"\n}";
 	update(sdot,f1.filter.value);
-}
+};
+// make div 3id to ace
+function acediv(id,mode,readonly){
+  // https://github.com/ajaxorg/ace/issues/1161
+    ace.config.set("workerPath", "/graphxq/ace-worker");
+    var editor = ace.edit(id);
+    editor.setTheme("ace/theme/textmate");
+    editor.getSession().setMode("ace/mode/"+mode);
+    editor.getSession().setUseWrapMode(true);
+    editor.setReadOnly(readonly);
+};
+
+function throttle(fn, delay) {
+  var timer = null;
+  return function () {
+    var context = this, args = arguments;
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      fn.apply(context, args);
+    }, delay);
+  };
+};

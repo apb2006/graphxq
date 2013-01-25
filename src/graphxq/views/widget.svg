@@ -50,6 +50,7 @@
                     evt.preventDefault();
                 }
                 evt.returnValue = false;
+                if(!evt.target.getScreenCTM)return ;// not svg?? bail out
                 var delta = evt.wheelDelta ? evt.wheelDelta / 360 : evt.detail / -9;
                 //console.log("mousewheel",delta);
                 updateScale((delta>0)?1.1:0.9,evt);
