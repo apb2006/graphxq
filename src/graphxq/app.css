@@ -14,7 +14,9 @@ body {
 .navbar-search .search-query {
     padding-left: 29px;
 }
-
+.popwidth {
+	width:50em;
+}
 .navbar-search .icon-search {
     position: absolute;
     top: 7px;

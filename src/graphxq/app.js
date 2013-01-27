@@ -5,7 +5,10 @@ $(document).ready(function(){
     if($("#editForm").length){
     setupEdit()
     };
-      resize=function(){
+    $("#infotip").popover({"html":true,
+    	  template: '<div class="popover popwidth"><div class="arrow"></div><div class="popover-inner popwidth" ><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>'
+    });
+    resize=function(){
      var h=$(window).height();
      $('.extend').not(':hidden').each(function(){
 	  var j=$(this)
@@ -45,10 +48,10 @@ function setupEdit(){
        $('input[name=dl]').attr('checked', download);
        $("#editForm").submit();       
     };   
-   $("#bnup").on("click",getsvg);
+   $("#bnRefresh").on("click",getsvg);
    $("#bnsvg").on("click",function(){sub(false)});
    $("#bndn").on("click",function(){sub(true)});
-   $("#dot").on("keyup",throttle(getsvg,250));
+   $("#data").on("keyup",throttle(getsvg,250));
    $("#bnxml").on("click",function(){
                             $("#svgdiv,#svgsrc").toggle()
                             resize();
@@ -80,10 +83,11 @@ function getsvg(){
                 $("#gInsertSVG").empty().append(n);
 				ace.edit("svgsrc2").setValue(str,1);
                 //ace.edit("svgsrc2").selection.clear();
-  
+				$("#infotip").attr("data-content","SVG returned in: "+d +" ms.");
               },
  			 error:function(jqXHR, textStatus, errorThrown){
- 				console.log("ajax error: "+textStatus + errorThrown);
+ 				console.log("ajax error: "+textStatus + jqXHR.responseText);
+ 				$("#infotip").attr("data-content","<pre>"+jqXHR.responseText+"</pre>");
  			}			
             });
 };

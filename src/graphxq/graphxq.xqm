@@ -33,8 +33,8 @@ function about(){
 : GET or POST return svg for dot, with download option 
 :)
 declare 
-%rest:path("graphxq/svg")
-%rest:form-param("dot","{$dot}")
+%rest:path("graphxq/api/svg")
+%rest:form-param("data","{$dot}")
 %rest:form-param("url","{$url}")  
 %rest:form-param("dl","{$dl}")
 %output:media-type("image/svg+xml")
@@ -127,7 +127,7 @@ function library(){
 :)
 declare 
 %rest:POST %rest:path("graphxq/api/dotml")
-%rest:form-param("dotml","{$dotml}")
+%rest:form-param("data","{$dotml}")
 %rest:form-param("dl","{$dl}")
 function api-dotml($dotml,$dl ) {
  let $dotml:=fn:trace($dotml,"dot: ")

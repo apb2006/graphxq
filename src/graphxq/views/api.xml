@@ -1,7 +1,24 @@
 <div>
-    <h1>About GraphXQ API</h1>
+    <h1>The GraphXQ API</h1>
+    <p>The Graphxq REST API.</p>
+    <h2 id="dot">
+	    <span class="label label-success">POST</span>
+	    <a href="#dot">dot</a>
+    </h2>
+    <h3>Description</h3>
+    <p>Return SVG from dot passed in the <code>data</code> parameter.</p>
+    <h3>Syntax</h3>
 	<p>
-		POST or GET <code>restxq/graphxq/api/dotml?dot=..</code>
+		<code>restxq/graphxq/api/dot?data=..</code>
 	</p>
-  
+     <h2 id="dotml">
+	     <span class="label label-success">POST</span>
+	     <a href="#dotml">dotml</a>
+     </h2>
+      <h3>Description</h3>
+    <p>Return SVG from dotML passed in the <code>data</code> parameter.</p>
+    <h3>Syntax</h3>
+     <p>
+        <code>restxq/graphxq/api/dotml?data=..</code>
+    </p>
 </div>

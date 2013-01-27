@@ -1,5 +1,5 @@
 <li class="span4" style="height:180px;">
-    <a class="pull-left" href="{$url($item)}">
+    <a class="pull-left thumbnail" href="{$url($item)}">
         <img class="media-object" src="/graphxq/{$item/url/@type}.png" style="width:100px;height:100px"/>
        </a>
     <div class="media-body">
