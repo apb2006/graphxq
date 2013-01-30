@@ -1,27 +1,93 @@
-<items>
-	<item>
+<items nextid="6">
+	<item id="G1">
 		<title>Process</title>
-		<url type="dot">samples/dot/process.gv</url>
+		<url type="dot">data/dot/process.gv</url>
 		<description>parallel process sequence</description>
 	</item>
-	<item>
+	<item id="G2">
 		<title>Unix</title>
-		<url type="dot">samples/dot/unix.gv</url>
+		<url type="dot">data/dot/unix.gv</url>
         <description>Evolution of UNIX.</description>
 	</item>
-	<item>
+	<item id="G3">
 		<title>Root</title>
-		<url type="dot">samples/dot/root.gv</url>
+		<url type="dot">data/dot/root.gv</url>
         <description>Very large and slow.</description>
 	</item>
-	<item>
+	<item id="G4"> 
 		<title>Sample</title>
-		<url type="dotml">samples/dotml/sample1.xml</url>
+		<url type="dotml">data/dotml/sample1.xml</url>
          <description>State machine.</description>
 	</item>
-	<item>
+	<item id="G5">
 		<title>Cluster</title>
-		<url type="dotml">samples/dotml/cluster.xml</url>
+		<url type="dotml">data/dotml/cluster.xml</url>
          <description>Simple cluster.</description>
+	</item>
+    <item id="G6">
+		<title>hierarchy</title>
+		<url type="dot">data/dot/hier.gv</url>
+         <description>hierarchy.</description>
+	</item>
+    <item id="G1">
+		<title>Process</title>
+		<url type="dot">data/dot/process.gv</url>
+		<description>parallel process sequence</description>
+	</item>
+	<item id="G2">
+		<title>Unix</title>
+		<url type="dot">data/dot/unix.gv</url>
+        <description>Evolution of UNIX.</description>
+	</item>
+	<item id="G3">
+		<title>Root</title>
+		<url type="dot">data/dot/root.gv</url>
+        <description>Very large and slow.</description>
+	</item>
+	<item id="G4"> 
+		<title>Sample</title>
+		<url type="dotml">data/dotml/sample1.xml</url>
+         <description>State machine.</description>
+	</item>
+	<item id="G5">
+		<title>Cluster</title>
+		<url type="dotml">data/dotml/cluster.xml</url>
+         <description>Simple cluster.</description>
+	</item>
+    <item id="G6">
+		<title>hierarchy</title>
+		<url type="dot">data/dot/hier.gv</url>
+         <description>hierarchy.</description>
+	</item>
+    <!-- pad -->
+    <item id="G1">
+		<title>Process</title>
+		<url type="dot">data/dot/process.gv</url>
+		<description>parallel process sequence</description>
+	</item>
+	<item id="G2">
+		<title>Unix</title>
+		<url type="dot">data/dot/unix.gv</url>
+        <description>Evolution of UNIX.</description>
+	</item>
+	<item id="G3">
+		<title>Root</title>
+		<url type="dot">data/dot/root.gv</url>
+        <description>Very large and slow.</description>
+	</item>
+	<item id="G4"> 
+		<title>Sample</title>
+		<url type="dotml">data/dotml/sample1.xml</url>
+         <description>State machine.</description>
+	</item>
+	<item id="G5">
+		<title>Cluster</title>
+		<url type="dotml">data/dotml/cluster.xml</url>
+         <description>Simple cluster.</description>
+	</item>
+    <item id="G6">
+		<title>hierarchy</title>
+		<url type="dot">data/dot/hier.gv</url>
+         <description>hierarchy.</description>
 	</item>
 </items>

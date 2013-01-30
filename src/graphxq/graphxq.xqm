@@ -14,7 +14,7 @@ import module namespace txq = 'apb.txq' at "lib/txq.xqm";
 import module namespace request = "http://exquery.org/ns/request";
 
 declare namespace svg= "http://www.w3.org/2000/svg";
-declare namespace rest = 'http://exquery.org/ns/restxq';
+declare namespace restxq = 'http://exquery.org/ns/restxq';
 
 (:~ shared page wrapper :)
 declare variable $grxq:layout:=fn:resolve-uri("views/layout.xml");
@@ -23,7 +23,17 @@ declare variable $grxq:layout:=fn:resolve-uri("views/layout.xml");
 : Home page for app
 :)
 declare 
-%rest:GET %rest:path("graphxq") 
+%restxq:GET %restxq:path("graphxq") 
+%output:method("html") %output:version("5.0")
+function home(){
+    <restxq:redirect>graphxq/about</restxq:redirect>
+};
+
+(:~
+: about page for app
+:)
+declare 
+%restxq:GET %restxq:path("graphxq/about") 
 %output:method("html") %output:version("5.0")
 function about(){
     render("views/about.xml",map{"title":="GraphXQ"})
@@ -33,12 +43,14 @@ function about(){
 : GET or POST return svg for dot, with download option 
 :)
 declare 
-%rest:path("graphxq/api/svg")
-%rest:form-param("data","{$dot}")
-%rest:form-param("url","{$url}")  
-%rest:form-param("dl","{$dl}")
+%restxq:path("graphxq/api/dot")
+%restxq:form-param("data","{$dot}")
+%restxq:form-param("url","{$url}")  
+%restxq:form-param("dl","{$dl}")
+%restxq:form-param("dotopt","{$dotopt}")
 %output:media-type("image/svg+xml")
-function graphxq-svg($dot,$url,$dl) {
+function graphxq-svg($dot,$url,$dl,$dotopt) {
+    let $junk:=fn:trace(fn:count($dotopt),"--opts: ")
     let $dot2:=getdot($dot,$url)
     let $svg:=dot2svg($dot2)
     let $fname:=if($dl)then "dot.svg" else ()
@@ -50,9 +62,9 @@ function graphxq-svg($dot,$url,$dl) {
 : @param src load from url
 :)
 declare 
-%rest:GET %rest:path("graphxq/dot")
+%restxq:GET %restxq:path("graphxq/dot")
 %output:method("html") %output:version("5.0")
-%rest:form-param("src","{$src}")
+%restxq:form-param("src","{$src}")
 function dotform($src){
     let $dot:= getdot("digraph {{a -> b}}",$src)
     let $svgwidget:=fn:doc("views/widget.svg")
@@ -67,9 +79,9 @@ function dotform($src){
 };
 
 declare 
-%rest:GET %rest:path("graphxq/dotml")
+%restxq:GET %restxq:path("graphxq/dotml")
 %output:method("html") %output:version("5.0")
-%rest:form-param("src","{$src}")
+%restxq:form-param("src","{$src}")
 function dotmlform($src){
     let $svgwidget:=fn:doc("views/widget.svg")
     let $toolbar:=fn:doc("views/toolbar.xml")
@@ -88,7 +100,7 @@ function dotmlform($src){
 
 (:~ static api page :)
 declare 
-%rest:GET %rest:path("graphxq/api")
+%restxq:GET %restxq:path("graphxq/api")
 %output:method("html") %output:version("5.0")
 function api(){
     render("views/api.xml",map{"title":="API information"})
@@ -96,22 +108,21 @@ function api(){
 
 (:~ static ace page :)
 declare 
-%rest:GET %rest:path("graphxq/ace")
+%restxq:GET %restxq:path("graphxq/ace")
 %output:method("html") %output:version("5.0")
 function ace(){
     let $svgwidget:=fn:doc("views/widget.svg")
     let $toolbar:=fn:doc("views/toolbar.xml")
-    let $v:=map{ "svgwidget":=$svgwidget,
-                 "toolbar":=$toolbar,
-                 "title":="DOTML editor",
-                 "bodyclass":="h100",
-                 "dotml":="gg"}
+    let $v:=map{ 
+                 "title":="XQuery editor (for no reason) ",
+                 "bodyclass":="h100"
+                 }
     return render("views/ace.xml",$v)
 };
 
 
 declare 
-%rest:GET %rest:path("graphxq/library")
+%restxq:GET %restxq:path("graphxq/library")
 %output:method("html") %output:version("5.0")
 function library(){
  let $lib:=fn:doc("data/library.xml")
@@ -126,9 +137,9 @@ function library(){
 : @return svg from dotml
 :)
 declare 
-%rest:POST %rest:path("graphxq/api/dotml")
-%rest:form-param("data","{$dotml}")
-%rest:form-param("dl","{$dl}")
+%restxq:POST %restxq:path("graphxq/api/dotml")
+%restxq:form-param("data","{$dotml}")
+%restxq:form-param("dl","{$dl}")
 function api-dotml($dotml,$dl ) {
  let $dotml:=fn:trace($dotml,"dot: ")
  let $dotml:=fn:parse-xml($dotml)
@@ -160,14 +171,14 @@ declare %private function getdotml($dotml as node(),$url) as node(){
 };
 (:~ CORS header with download option :) 
 declare function headers($attachment){
-<rest:response>
+<restxq:response>
     <http:response>
         <http:header name="Access-Control-Allow-Origin" value="*"/>
     {if($attachment)
     then <http:header name="Content-Disposition" value='attachment;filename="{$attachment}"'/>
     else ()}
     </http:response>
-</rest:response>
+</restxq:response>
 };            
 (:~ Generate svg from dot :)
 declare %private function dot2svg($dot as xs:string) as node(){

@@ -9,7 +9,7 @@
 		
 	</div>
 	<div class="btn-group">
-		<button id="bnxx" class="btn btn-mini">
+		<button id="bnOpts" class="btn btn-mini">
 			<i class="icon-gift"></i>
 			Options
 		</button>
@@ -35,8 +35,10 @@
 			<i class="icon icon-indent-right"></i>
 		</a>
 	</div>
-	<a id="infotip" data-original-title="Status from Ajax"  rel="popover" data-placement="bottom" data-content="nothing yet.">
-                 <i class="icon-info"></i> Status
+	<a id="infotip" data-original-title="Status from Ajax" 
+        class="btn btn-mini"  rel="popover" data-placement="bottom" data-content="nothing yet."
+               title="Ajax request status">
+                 <i class="icon-info-sign" title="Request status, click for more.">></i>  
   </a>
     <div class="btn-group pull-right">
     <button id="bnsvg" class="btn btn-mini" title="Show SVG standalone.">

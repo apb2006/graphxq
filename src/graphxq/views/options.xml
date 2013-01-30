@@ -1,0 +1,44 @@
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" 
+aria-labelledby="myModalLabel" aria-hidden="true">
+<form id="frm-defaults" class="form-table">
+                        <label>
+                            Title:
+                            <input type="text" value="" name="dotTitle" size="15" />
+                        </label>
+
+                        <label>
+                            RankDir:
+                            <select name="rankdir">
+                                <option value="rankdir=TB;" selected="selected">TB (top
+                                    -> bottom)
+                                </option>
+                                <option value="rankdir=LR;">LR (left -> right)</option>
+                            </select>
+                        </label>
+
+                        <label>
+                            Default Shape:
+                            <select name="shape">{$list-shapes}</select>
+                        </label>
+                        <label>
+                            Color:
+                            <select id="lstColors" width="10">{$list-colors}</select>
+                        </label>
+
+                        <label>
+                            Background:
+                            <select name="bgcolor">{$list-colors}</select>
+                        </label>
+                        <label>
+                            Filter:
+                            <select name="filter">
+                                <option value="Bumpy">Bumpy</option>
+                                <option value="" selected="selected">(None)</option>
+                                <option value="grey_bevel_shadow">grey_bevel_shadow</option>
+                                <option value="Bevel">Bevel</option>
+                                <option value="MyFilter">MyFilter</option>
+                                <option value="MyShadow">MyShadow</option>
+                            </select>
+                        </label>
+                    </form>
+</div>

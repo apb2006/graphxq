@@ -1,14 +1,15 @@
-<div>
+<div class="row-fluid">		
 <div class="hero-unit">
     <h1>GraphXQ</h1>
 	<p>A web interface to <a href="http://www.graphviz.org/" target="_blank">Graphviz</a>.
         Graph descriptions can be entered in the 
-        <a href="http://www.graphviz.org/content/dot-language" target="_blank">Dot</a> language 
-        or in <a href="http://www.martin-loetzsch.de/DOTML" target="_blank">DOTML</a>. 
-        A REST interface is provided (<a href="api">API</a>) that enables SVG generation to be used as a service.</p>
+        <a href="http://www.graphviz.org/content/dot-language" target="_blank">Dot</a> 
+        or  <a href="http://www.martin-loetzsch.de/DOTML" target="_blank">DotML</a> languages and the corresponding
+        SVG viewed or downloaded. 
+        A <a href="api">REST interface</a> enables SVG generation to be used as a service.</p>
     </div>
-    
- <div class="row">
+    <div class="container-fluid">
+ <div class="fluid-row">
         <div class="span4">
           <h2>Client</h2>
  <p>The client side targets modern browsers. It was tested against Firefox 15 and Chrome 21.
@@ -32,9 +33,9 @@
      <p> The graphviz <code>dot</code> executable is used to generate SVG from the DOT source.
         The resultant SVG is viewed in an interface that provides pan and zoom functionality.
         The SVG may also be viewed standalone or downloaded.</p>
-    <p>This application includes an XSLT transform to convert <code>DOTML</code> to 
+    <p>This application includes an XSLT transform to convert <code>DotML</code> to 
     <code>dot</code> developed by Martin Loetzsch.
-     <a href="http://www.martin-loetzsch.de/DOTML" target="_blank">DOTML</a>
+     <a href="http://www.martin-loetzsch.de/DOTML" target="_blank">DotML</a>
      is a XML based syntax for the input language of the 'Dot'.</p>
         </div>
         <div class="span4">
@@ -42,11 +43,12 @@
  <p>The SVG pan and zoom has problems, especially in Firefox. In part this maybe due
 to firefox bugs</p>
 <p>For reference this shows how the SVG <a href="/graphxq/viewbox/viewBox.svg">viewbox</a>
-works. See also <a href="http://alzt.tau.ac.il/~dagan/tools/#zoom">here</a>.
+works. See also <a href="http://alzt.tau.ac.il/~dagan/tools/#zoom">here</a>. and
+<a href="http://www.dotuscomus.com/svg/lib/library.html#autozoom">here</a>.
 </p>
         </div>
       </div>
-
+      </div>
       <hr/>
 
       <footer>
