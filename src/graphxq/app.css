@@ -22,7 +22,9 @@ body {
     top: 7px;
     left: 11px;
 }
-
+.media {
+  margin-top:0px;
+}
 .navbar-search .search-query:focus, .navbar-search .search-query.focused {
     padding-left: 30px;
 }

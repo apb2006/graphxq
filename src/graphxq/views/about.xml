@@ -6,17 +6,18 @@
         <a href="http://www.graphviz.org/content/dot-language" target="_blank">Dot</a> 
         or  <a href="http://www.martin-loetzsch.de/DOTML" target="_blank">DotML</a> languages and the corresponding
         SVG viewed or downloaded. 
-        A <a href="api">REST interface</a> enables SVG generation to be used as a service.</p>
+        A <a href="api">REST interface</a> enables the SVG generation to be used as a service.</p>
     </div>
     <div class="container-fluid">
  <div class="fluid-row">
         <div class="span4">
           <h2>Client</h2>
- <p>The client side targets modern browsers. It was tested against Firefox 15 and Chrome 21.
+ <p>The client side targets modern browsers with SVG support. It was tested against Firefox 15 and Chrome 21.
     </p>
     
-    <p>Twitter <a href="http://twitter.github.com/bootstrap/index.html"
-            target="_blank">Bootstrap</a> is used for the client side styling. 
+    <p><a href="http://twitter.github.com/bootstrap/index.html"
+            target="_blank">Twitter Bootstrap</a> is used for the client side styling. 
+            The <a href="http://ace.ajax.org/">Ace editor</a> is used to provide rich editing functionality.
     </p>
     <p>Javascript libraries are loaded from CDN where possible. In particular
     <a href="http://cdnjs.com"  target="_blank">cdnjs.com</a> is used.</p>
@@ -42,15 +43,17 @@
           <h2>Todo</h2>
  <p>The SVG pan and zoom has problems, especially in Firefox. In part this maybe due
 to firefox bugs</p>
-<p>For reference this shows how the SVG <a href="/graphxq/viewbox/viewBox.svg">viewbox</a>
-works. See also <a href="http://alzt.tau.ac.il/~dagan/tools/#zoom">here</a>. and
-<a href="http://www.dotuscomus.com/svg/lib/library.html#autozoom">here</a>.
+<p>For reference how the SVG <a href="/graphxq/viewbox/viewBox.svg">viewbox</a>
+works. See also <a href="http://www.dotuscomus.com/svg/lib/library.html#autozoom" target="_blank">here</a> 
+for a better way?
 </p>
         </div>
       </div>
       </div>
       <hr/>
-
+<a href="https://github.com/apb2006/graphxq">
+   <img style="position: absolute; top: 50px; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"/>
+   </a>
       <footer>
         <p>&#169; Andy Bunce 2013</p>
         <ul class="quick-links">
@@ -71,7 +74,7 @@ works. See also <a href="http://alzt.tau.ac.il/~dagan/tools/#zoom">here</a>. and
         <li class="tweet-btn"><iframe title="Twitter Tweet Button"
                 style="width: 106px; height: 20px;"
                 class="twitter-share-button twitter-count-horizontal"
-                src="http://platform.twitter.com/widgets/tweet_button.html?count=horizontal&amp;id=twitter-widget-0&amp;lang=en&amp;original_referer=https%3A%2F%2Fgithub.com%2Fapb2006%2Fgraphxq&amp;size=m&amp;text=graphxq #xquery&amp;url=https%3A%2F%2Fgithub.com%2Fapb2006%2Fxqwebdoc&amp;via=apb1704"
+                src="http://platform.twitter.com/widgets/tweet_button.html?count=horizontal&amp;id=twitter-widget-0&amp;lang=en&amp;original_referer=http://open1-apb.rhcloud.com/restxq/graphxq/&amp;size=m&amp;text=graphxq #xquery&amp;url=http://open1-apb.rhcloud.com/restxq/graphxq/&amp;via=apb1704"
                 allowtransparency="true" scrolling="no" frameborder="0"></iframe></li>
     </ul>
       </footer>

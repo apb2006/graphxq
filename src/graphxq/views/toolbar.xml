@@ -1,7 +1,8 @@
 <div>
   
 	<div class="btn-group">
-		<button id="bnRefresh" class="btn btn-mini">
+		<button id="bnRefresh" class="btn btn-mini"
+		title="Resend SVG request" >
 			<i class="icon-refresh"></i>
 			Redraw
 		</button>
@@ -9,13 +10,17 @@
 		
 	</div>
 	<div class="btn-group">
-		<button id="bnOpts" class="btn btn-mini">
+		<a id="bnOpts" class="btn btn-mini" 
+		href="/graphxq/views/options.htm" data-target="#myModal" data-toggle="modal"
+		 title="Extra settings (not implemented yet)"  >
 			<i class="icon-gift"></i>
 			Options
-		</button>
+		</a>
+		<div class="modal fade" id="myModal"></div>
 	</div>
     <div class="btn-group">
-		<button id="bnclear" class="btn btn-mini">
+		<button id="bnclear" class="btn btn-mini"
+            title="Set editor to default empty content" >
 			<i class="icon-remove"></i>
 			Clear
 		</button>

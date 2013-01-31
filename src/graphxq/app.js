@@ -2,12 +2,6 @@
 var resize;
  
 $(document).ready(function(){
-    if($("#editForm").length){
-    setupEdit()
-    };
-    $("#infotip").popover({"html":true,
-    	  template: '<div class="popover popwidth"><div class="arrow"></div><div class="popover-inner popwidth" ><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>'
-    });
     resize=function(){
      var h=$(window).height();
      $('.extend').not(':hidden').each(function(){
@@ -15,18 +9,27 @@ $(document).ready(function(){
 	   var top=j.offset();
 	   j.height(h-top.top-10)
        //console.log("resize",j)
-	 });
+       j.find(".ace").each(function(){
+            var a=$(this).attr('id')
+            ace.edit(a).resize();
+        });
      
-	};  
+	})};  
     $(window).resize(resize);
     resize();
     // init ace where ace class
     $('.ace').each(function(){
   	  acediv($(this).attr('id'))
-  	  }) 
+  	  });
+     if($("#editForm").length){
+    setupEdit()
+    }; 
+   
 });
-
 function setupEdit(){
+    $("#infotip").popover({"html":true,
+    	  template: '<div class="popover popwidth"><div class="arrow"></div><div class="popover-inner popwidth" ><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>'
+    });
     // toolbar buttons
     $('a[data-action="lDom"]').click(function (){
         $("#leftPane").css('display','inline').removeAttr('class').addClass("span12");
@@ -50,21 +53,24 @@ function setupEdit(){
        $("#editForm").submit();       
     };   
    $("#bnRefresh").on("click",getsvg);
-   $("#bnOpts").on("click",function(){alert("not yet")});
+//   $("#bnOpts").on("click",function(){alert("not yet")});
    $("#bnsvg").on("click",function(){submit(false)});
    $("#bndn").on("click",function(){submit(true)});
-   $("#data").on("keyup",throttle(getsvg,250));
    $("#bnxml").on("click",function(){
-                            $("#svgdiv,#svgsrc").toggle()
-                            resize();
+                            $("#svgdiv, #svgsrc").toggle(0,resize)
+                             
+                            //resize();
                             });
     $("#bnclear").on("click",function(){
-                              $("#data").val($("#cleartext").val())
+                              ace.edit("acedata").setValue($("#cleartext").val(),1)
            });
-    getsvg()	
+    var editor= ace.edit("acedata");
+    editor.getSession().on('change',throttle(getsvg,250));
+    editor.setValue($("#data").val(),1);       	
 };
 
 function getsvg(){
+     $("#data").val(ace.edit("acedata").getValue());
      var f=$("#editForm").serializeArray()
      var d0=+new Date()
      $("#infotip").removeClass("btn-danger").addClass("btn-warning");

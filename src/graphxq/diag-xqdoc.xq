@@ -1,3 +1,7 @@
+(:~
+: generate dotml from xqdoc source
+: apb Jan 2013
+:)
 declare namespace doc="http://www.xqdoc.org/1.0";
 declare namespace dotml="http://www.martin-loetzsch.de/DOTML";
 

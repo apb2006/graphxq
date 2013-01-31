@@ -66,7 +66,7 @@ declare
 %output:method("html") %output:version("5.0")
 %restxq:form-param("src","{$src}")
 function dotform($src){
-    let $dot:= getdot("digraph {{a -> b}}",$src)
+    let $dot:= getdot("digraph {a -> b}",$src)
     let $svgwidget:=fn:doc("views/widget.svg")
     let $toolbar:=fn:doc("views/toolbar.xml")
     let $map:=map{"list-shapes":=dotui:shapes(""),
@@ -169,6 +169,7 @@ declare %private function getdotml($dotml as node(),$url) as node(){
   else    
     $dotml         
 };
+
 (:~ CORS header with download option :) 
 declare function headers($attachment){
 <restxq:response>
@@ -179,7 +180,8 @@ declare function headers($attachment){
     else ()}
     </http:response>
 </restxq:response>
-};            
+};
+            
 (:~ Generate svg from dot :)
 declare %private function dot2svg($dot as xs:string) as node(){
     let $svgx:=gr:dot($dot,())

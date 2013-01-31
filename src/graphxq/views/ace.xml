@@ -1,7 +1,19 @@
-<div class="row-fluid">		
-
-    <div class="span12  ace-container extend" id="leftPane" style="height:20em;">		
-        <div id="editor" class="ace">module namespace txq = 'apb.txq';
+<div class="row-fluid">	
+ <div class="span2">
+  Sidebar content outline etc..
+</div>
+<div class="span10">	
+    <ul class="nav nav-tabs" id="myTab"  style="margin-bottom:4px">
+        <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
+        <li><a href="#profile" data-toggle="tab">Profile</a></li>
+        <li><a href="#messages" data-toggle="tab">Messages</a></li>
+        <li><a href="#settings" data-toggle="tab">Settings</a></li>
+    </ul>
+     
+    <div class="tab-content">
+    <div class="tab-pane active" id="home">
+    <div class="span12  ace-container extend" id="leftPane" >		
+        <div id="editor" class="ace" data-mode="xquery" >module namespace txq = 'apb.txq';
 declare default function namespace 'apb.txq'; 
 import module namespace xquery = "http://basex.org/modules/xquery";
 
@@ -16,7 +28,15 @@ declare function render($template as xs:string,$map as map(*)){{
    return xquery:invoke($template,$map)  
 }};</div>
     </div>
-    <script>
-  acediv("editor","xquery",false)
-    </script>
+    </div>
+    <div class="tab-pane" id="profile">
+     ...
+     </div>
+    <div class="tab-pane" id="messages">
+    ...</div>
+    <div class="tab-pane" id="settings">
+    ...</div>
+    </div>
+</div> 
+  
 </div>
