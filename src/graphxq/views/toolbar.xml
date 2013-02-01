@@ -11,12 +11,12 @@
 	</div>
 	<div class="btn-group">
 		<a id="bnOpts" class="btn btn-mini" 
-		href="/graphxq/views/options.htm" data-target="#myModal" data-toggle="modal"
+		href="/graphxq/views/options.xml" data-target="#myModal" data-toggle="modal"
 		 title="Extra settings (not implemented yet)"  >
 			<i class="icon-gift"></i>
 			Options
 		</a>
-		<div class="modal fade" id="myModal"></div>
+		
 	</div>
     <div class="btn-group">
 		<button id="bnclear" class="btn btn-mini"

@@ -50,7 +50,6 @@ declare
 %restxq:form-param("dotopt","{$dotopt}")
 %output:media-type("image/svg+xml")
 function graphxq-svg($dot,$url,$dl,$dotopt) {
-    let $junk:=fn:trace(fn:count($dotopt),"--opts: ")
     let $dot2:=getdot($dot,$url)
     let $svg:=dot2svg($dot2)
     let $fname:=if($dl)then "dot.svg" else ()
@@ -128,7 +127,7 @@ function library(){
  let $lib:=fn:doc("data/library.xml")
  let $map:=map{"title":="Samples",
               "items":=$lib//items,
-              "url":=function($item){fn:concat($item/url/@type,'?src=',$item/url)}
+              "url":=function($item){fn:concat($item/url/@type,'?src=data/samples/',$item/url)}
               }
  return render("views/library.xml",$map)
 };
@@ -188,7 +187,7 @@ declare %private function dot2svg($dot as xs:string) as node(){
     return   gr:autosize($svgx) 
 };                     
 
-(:~ css class to hightlight current page :)
+(:~ css class to highlight current page :)
 declare function active-link($path as xs:string,$page as xs:string) as xs:string{
     if(fn:ends-with($path,$page)) then "active" else ""
 };  
@@ -200,8 +199,7 @@ declare function active-link($path as xs:string,$page as xs:string) as xs:string
 :)
 declare function render($template as xs:string,$locals){
     let $path:=request:path()
-    let $default:=map{"usermenu":=<div>users</div>,
-                       "title":=request:path(),
+    let $default:=map{ "title":=request:path(),
                        "active-link":=active-link($path,?), (: *** FAILS IF request:path() :)
                        "bodyclass":=""}
     let $locals:=map:new(($default,$locals))                   

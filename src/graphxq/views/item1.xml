@@ -1,9 +1,14 @@
-<li class="media thumbnail" style="height:8em;width:20em;">
+<li class="media thumbnail" style="height:128px;width:20em;">
     <a class="pull-left " href="{$url($item)}">
-        <img class="media-object" src="/graphxq/{$item/url/@type}.png" style="width:100px;height:100px"/>
+        <img class="media-object" src="/graphxq/data/thumbs/{$item/url}.gif" style="width:120px;height:120px"/>
        </a>
     <div class="media-body">
-        <h4 class="media-heading"><a href="{$url($item)}">{$item/title/fn:string()}</a></h4>
+        <h4 class="media-heading">
+         
+           <a href="{$url($item)}">
+           <img  src="/graphxq/{$item/url/@type}.png" />
+           {$item/title/fn:string()}</a>
+        </h4>
      {$item/description/node()}
     </div>
  

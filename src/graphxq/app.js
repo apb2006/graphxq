@@ -8,10 +8,10 @@ $(document).ready(function(){
 	  var j=$(this)
 	   var top=j.offset();
 	   j.height(h-top.top-10)
-       //console.log("resize",j)
+       //resize any aces
        j.find(".ace").each(function(){
-            var a=$(this).attr('id')
-            ace.edit(a).resize();
+            var id=$(this).attr('id')
+            ace.edit(id).resize();
         });
      
 	})};  

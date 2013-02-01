@@ -61,7 +61,7 @@ declare %private function dot-executeb( $dot as xs:string, $params as xs:string*
     return if($r/code!="0")
            then  fn:error(xs:QName('gr:dot1'),$r/error) 
            else  let $d:=file:read-binary($oname)
-                (: let $junk:=file:delete($oname) :)
+                 (: let $junk:=file:delete($oname) :) 
                  return $d                  
 };
 
