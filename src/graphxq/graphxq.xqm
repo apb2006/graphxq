@@ -26,7 +26,7 @@ declare
 %restxq:GET %restxq:path("graphxq") 
 %output:method("html") %output:version("5.0")
 function home(){
-    <restxq:redirect>graphxq/about</restxq:redirect>
+    <restxq:redirect>/restxq/graphxq/about</restxq:redirect>
 };
 
 (:~
@@ -120,13 +120,13 @@ function ace(){
 };
 
 
-declare 
+declare  
 %restxq:GET %restxq:path("graphxq/library")
 %output:method("html") %output:version("5.0")
 function library(){
- let $lib:=fn:doc("data/library.xml")
- let $map:=map{"title":="Samples",
-              "items":=$lib//items,
+ let $lib:=fn:doc("data/library.xml") 
+ let $map:=map{"title":="Samples", 
+              "items":=$lib//items, 
               "url":=function($item){fn:concat($item/url/@type,'?src=data/samples/',$item/url)}
               }
  return render("views/library.xml",$map)

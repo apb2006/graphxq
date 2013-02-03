@@ -3,7 +3,8 @@ import module namespace gr = 'apb.graphviz' at "graphviz.xqm" ;
 import module namespace dotml = 'http://www.martin-loetzsch.de/DOTML' at "dotml.xqm";
 declare variable $src:=resolve-uri("data/samples/");
 declare variable $dest:=resolve-uri("data/thumbs/");
-declare variable $opts:=("-Tgif",'-Gdpi=100','-Gsize="1.2,1.2"','-Gratio="fill"');
+declare variable $opts:=("-Tgif","-Gsize=1.2,1.2",'-Gfill=auto');
+
 
 declare function local:thumb($dot,$name){
  let $a:=gr:dot-executeb($dot,$opts)

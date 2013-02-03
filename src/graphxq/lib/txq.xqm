@@ -33,8 +33,6 @@ declare function render($template as xs:string,$map as map(*),$layout as xs:stri
     return render($layout,$map)  
 };
 
-
-
 (:~
 : partial template function: evaluate part for each value in sequence
 : @return updated doc from map
