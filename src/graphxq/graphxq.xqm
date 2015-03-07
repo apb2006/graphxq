@@ -10,14 +10,14 @@ declare default function namespace 'apb.graphviz.web';
 import module namespace gr = 'apb.graphviz' at "graphviz.xqm";
 import module namespace dotml = 'http://www.martin-loetzsch.de/DOTML' at "dotml.xqm";
 import module namespace dotui = 'apb.graphxq.dotui' at "dotui.xqm";
-import module namespace txq = 'apb.txq' at "lib/txq.xqm";
+import module namespace txq = 'quodatum.txq' at "lib/txq.xqm";
 import module namespace request = "http://exquery.org/ns/request";
 
 declare namespace svg= "http://www.w3.org/2000/svg";
 declare namespace restxq = 'http://exquery.org/ns/restxq';
 
 (:~ shared page wrapper :)
-declare variable $grxq:layout:=fn:resolve-uri("views/layout.xml");
+declare variable $grxq:layout:=fn:resolve-uri("views/layout.xq");
 
 (:~
 : Home page for app
@@ -26,7 +26,7 @@ declare
 %restxq:GET %restxq:path("graphxq") 
 %output:method("html") %output:version("5.0")
 function home(){
-    <restxq:redirect>/restxq/graphxq/about</restxq:redirect>
+    <restxq:redirect>/graphxq/about</restxq:redirect>
 };
 
 (:~
@@ -36,7 +36,7 @@ declare
 %restxq:GET %restxq:path("graphxq/about") 
 %output:method("html") %output:version("5.0")
 function about(){
-    render("views/about.xml",map{"title":="GraphXQ"})
+    render("views/about.xml",map{"title":"GraphXQ"})
 };
 
 (:~
@@ -68,13 +68,13 @@ function dotform($src){
     let $dot:= getdot("digraph {a -> b}",$src)
     let $svgwidget:=fn:doc("views/widget.svg")
     let $toolbar:=fn:doc("views/toolbar.xml")
-    let $map:=map{"list-shapes":=dotui:shapes(""),
-                  "list-colors":=dotui:colors(""),
-                  "svgwidget":=$svgwidget,
-                  "toolbar":=$toolbar,
-                  "title":="DOT editor",
-                  "dot":=$dot}
-    return render("views/dotform.xml",$map)
+    let $map:=map{"list-shapes": dotui:shapes(""),
+                  "list-colors": dotui:colors(""),
+                  "svgwidget": $svgwidget,
+                  "toolbar": $toolbar,
+                  "title": "DOT editor",
+                  "dot": $dot}
+    return render("views/dotform.xq",$map)
 };
 
 declare 
@@ -87,12 +87,12 @@ function dotmlform($src){
     let $default:=<graph xmlns="http://www.martin-loetzsch.de/DOTML"><node id="test"/></graph>
     let $dotml:= getdotml($default ,$src)
     let $dotml:= fn:serialize($dotml)
-    let $v:=map{ "svgwidget":=$svgwidget,
-                 "toolbar":=$toolbar,
-                 "title":="DOTML editor",
-                 "bodyclass":="h100",
-                 "dotml":=$dotml}
-    return render("views/dotmlform.xml",$v)
+    let $v:=map{ "svgwidget": $svgwidget,
+                 "toolbar": $toolbar,
+                 "title": "DOTML editor",
+                 "bodyclass": "h100",
+                 "dotml": $dotml}
+    return render("views/dotmlform.xq",$v)
 };
 
 
@@ -102,7 +102,7 @@ declare
 %restxq:GET %restxq:path("graphxq/api")
 %output:method("html") %output:version("5.0")
 function api(){
-    render("views/api.xml",map{"title":="API information"})
+    render("views/api.xml",map{"title": "API information"})
 };
 
 (:~ static ace page :)
@@ -113,8 +113,8 @@ function ace(){
     let $svgwidget:=fn:doc("views/widget.svg")
     let $toolbar:=fn:doc("views/toolbar.xml")
     let $v:=map{ 
-                 "title":="XQuery editor (for no reason) ",
-                 "bodyclass":="h100"
+                 "title": "XQuery editor (for no reason) ",
+                 "bodyclass": "h100"
                  }
     return render("views/ace.xml",$v)
 };
@@ -125,9 +125,9 @@ declare
 %output:method("html") %output:version("5.0")
 function library(){
  let $lib:=fn:doc("data/library.xml") 
- let $map:=map{"title":="Samples", 
-              "items":=$lib//items, 
-              "url":=function($item){fn:concat($item/url/@type,'?src=data/samples/',$item/url)}
+ let $map:=map{"title": "Samples", 
+              "items": $lib//items, 
+              "url": function($item){fn:concat($item/url/@type,'?src=data/samples/',$item/url)}
               }
  return render("views/library.xml",$map)
 };
@@ -199,9 +199,9 @@ declare function active-link($path as xs:string,$page as xs:string) as xs:string
 :)
 declare function render($template as xs:string,$locals){
     let $path:=request:path()
-    let $default:=map{ "title":=request:path(),
-                       "active-link":=active-link($path,?), (: *** FAILS IF request:path() :)
-                       "bodyclass":=""}
-    let $locals:=map:new(($default,$locals))                   
+    let $default:=map{ "title": request:path(),
+                       "active-link": active-link($path,?), (: *** FAILS IF request:path() :)
+                       "bodyclass": ""}
+    let $locals:=map:merge(($default,$locals))                   
     return txq:render(fn:resolve-uri($template),$locals,$grxq:layout)
 };       

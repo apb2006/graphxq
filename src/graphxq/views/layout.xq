@@ -1,3 +1,8 @@
+declare  variable $body external :="{body}";
+declare  variable $title external :="{title}";
+declare  variable $bodyclass external :="{$bodyclass}";
+declare  variable $active-link external :=function($_){$_};
+
 <html >
 	<head id="head">
 		<meta charset="utf-8" />
@@ -14,13 +19,13 @@
 			rel="stylesheet" type="text/css" />
 		
 		<!-- Le fav and touch icons -->
-		<link rel="shortcut icon" href="/graphxq/graphxq2.png" />
+		<link rel="shortcut icon" href="/static/graphxq/graphxq2.png" />
 
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.1/jquery.min.js" type="text/javascript"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.2.2/bootstrap.min.js" type="text/javascript"></script>
         <script src="http://raw.github.com/ajaxorg/ace-builds/master/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
-        <link href="/graphxq/app.css" rel="stylesheet" type="text/css" />
-        <script src="/graphxq/app.js" type="text/javascript"></script>
+        <link href="/static/graphxq/app.css" rel="stylesheet" type="text/css" />
+        <script src="/static/graphxq/app.js" type="text/javascript"></script>
     <script type="text/javascript"><![CDATA[
           var _gaq = _gaq || [];
           _gaq.push(['_setAccount', 'UA-34544921-1']);
@@ -44,7 +49,7 @@
 						<span class="icon-bar"></span>
 					</a>
 					<a href="about" class="brand" title="Version 0.4.0">
-						<img src="/graphxq/graphxq2.png" />
+						<img src="/static/graphxq/graphxq2.png" />
 						graphXQ
 					</a>
 					

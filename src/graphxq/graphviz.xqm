@@ -52,7 +52,7 @@ declare %private function dot-execute( $dot as xs:string, $params as xs:string*)
 };
 
 (:~ run dot command  returning binary :)
-declare %private function dot-executeb( $dot as xs:string, $params as xs:string*) as xs:base64Binary{
+declare  function dot-executeb( $dot as xs:string, $params as xs:string*) as xs:base64Binary{
     let $fname:=$gr:tmpdir || random:uuid()
     let $oname:=$fname || ".o"
     let $junk:=file:write-text($fname,$dot)
