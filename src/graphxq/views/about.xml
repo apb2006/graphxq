@@ -74,7 +74,7 @@ for a better way?
         <li class="tweet-btn"><iframe title="Twitter Tweet Button"
                 style="width: 106px; height: 20px;"
                 class="twitter-share-button twitter-count-horizontal"
-                src="http://platform.twitter.com/widgets/tweet_button.html?count=horizontal&amp;id=twitter-widget-0&amp;lang=en&amp;original_referer=http://open1-apb.rhcloud.com/restxq/graphxq/&amp;size=m&amp;text=graphxq #xquery&amp;url=http://open1-apb.rhcloud.com/restxq/graphxq/&amp;via=apb1704"
+                src="http://platform.twitter.com/widgets/tweet_button.html?count=horizontal&amp;id=twitter-widget-0&amp;lang=en&amp;original_referer=http://apps-quodatum.rhcloud.com/graphxq/&amp;size=m&amp;text=graphxq #xquery&amp;url=http://apps-quodatum.rhcloud.com/graphxq/&amp;via=apb1704"
                 allowtransparency="true" scrolling="no" frameborder="0"></iframe></li>
     </ul>
       </footer>
