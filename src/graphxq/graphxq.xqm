@@ -129,7 +129,7 @@ function library(){
               "items": $lib//items, 
               "url": function($item){fn:concat($item/url/@type,'?src=data/samples/',$item/url)}
               }
- return render("views/library.xml",$map)
+ return render("views/library.xq",$map)
 };
 
 (:~ 
