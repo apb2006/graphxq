@@ -1,6 +1,8 @@
+
 declare variable $toolbar external :="{tooolbar}";
 declare variable $dot external :="{dot}";
 declare variable $svgwidget external :="{svg}";
+
 <div class="row-fluid">		
 
 	<div class="row-fluid" style="height:24px">

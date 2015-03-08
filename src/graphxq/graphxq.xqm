@@ -63,8 +63,9 @@ function graphxq-svg($dot,$url,$dl,$dotopt) {
 declare 
 %restxq:GET %restxq:path("graphxq/dot")
 %output:method("html") %output:version("5.0")
-%restxq:form-param("src","{$src}")
+%restxq:query-param("src","{$src}")
 function dotform($src){
+    let $_:=fn:trace($src,"SRC")
     let $dot:= getdot("digraph {a -> b}",$src)
     let $svgwidget:=fn:doc("views/widget.svg")
     let $toolbar:=fn:doc("views/toolbar.xml")
@@ -80,12 +81,14 @@ function dotform($src){
 declare 
 %restxq:GET %restxq:path("graphxq/dotml")
 %output:method("html") %output:version("5.0")
-%restxq:form-param("src","{$src}")
+%restxq:query-param("src","{$src}")
 function dotmlform($src){
+
     let $svgwidget:=fn:doc("views/widget.svg")
     let $toolbar:=fn:doc("views/toolbar.xml")
     let $default:=<graph xmlns="http://www.martin-loetzsch.de/DOTML"><node id="test"/></graph>
     let $dotml:= getdotml($default ,$src)
+    let $_:=fn:trace($dotml)
     let $dotml:= fn:serialize($dotml)
     let $v:=map{ "svgwidget": $svgwidget,
                  "toolbar": $toolbar,

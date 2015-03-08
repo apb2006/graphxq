@@ -105,7 +105,7 @@ function acediv(id){
   // https://github.com/ajaxorg/ace/issues/1161
 	var mode=$("#"+id).attr("data-mode");
 	var readonly=!!$("#"+id).attr("data-readonly");
-    ace.config.set("workerPath", "/graphxq/ace-worker");
+  //  ace.config.set("workerPath", "/static/graphxq/ace-worker");
     var editor = ace.edit(id);
     editor.setTheme("ace/theme/textmate");
     editor.getSession().setMode("ace/mode/"+mode);

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<svg width="438" height="438" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g>
+  <title>Graphviz</title>
+  <circle id="svg_1" r="62.93647" cy="65.436478" cx="211.436462" stroke-width="5" stroke="#000000" fill="#FF0000"/>
+  <circle id="svg_4" r="62.936462" cy="294.436478" cx="65.43647" stroke-width="5" stroke="#000000" fill="#00bf00"/>
+  <circle id="svg_5" r="62.936462" cy="286.436478" cx="372.43647" stroke-width="5" stroke="#000000" fill="#ffff00"/>
+  <line id="svg_6" y2="241.436478" x2="101.436462" y1="119.436478" x1="180.436462" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" stroke="#000000" fill="none"/>
+  <line id="svg_7" y2="226.436478" x2="344.436462" y1="109.436478" x1="255.436462" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" stroke="#000000" fill="none"/>
+ </g>
+</svg>

@@ -23,7 +23,7 @@ declare  variable $active-link external :=function($_){$_};
 
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.1/jquery.min.js" type="text/javascript"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.2.2/bootstrap.min.js" type="text/javascript"></script>
-        <script src="http://raw.github.com/ajaxorg/ace-builds/master/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.8/ace.js" type="text/javascript" charset="utf-8"></script>
         <link href="/static/graphxq/app.css" rel="stylesheet" type="text/css" />
         <script src="/static/graphxq/app.js" type="text/javascript"></script>
     <script type="text/javascript"><![CDATA[
@@ -48,7 +48,7 @@ declare  variable $active-link external :=function($_){$_};
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</a>
-					<a href="about" class="brand" title="Version 0.4.0">
+					<a href="about" class="brand" title="Version 0.5.0">
 						<img src="/static/graphxq/graphxq2.png" />
 						graphXQ
 					</a>

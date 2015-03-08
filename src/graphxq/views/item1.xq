@@ -11,7 +11,7 @@ declare variable $url external;
       
     <div class="media-body">
         <h4 class="media-heading">         
-           <img  src="/graphxq/{$item/url/@type}.png" />
+           <img  src="/static/graphxq/{$item/url/@type}.png" />
            {$item/title/fn:string()}
         </h4>
      {$item/description/node()}
