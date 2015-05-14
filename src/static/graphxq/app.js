@@ -32,18 +32,18 @@ function setupEdit(){
     });
     // toolbar buttons
     $('a[data-action="lDom"]').click(function (){
-        $("#leftPane").css('display','inline').removeAttr('class').addClass("span12");
+        $("#leftPane").css('display','inline').removeAttr('class').addClass("col-md-12");
         $("#rightPane").removeAttr('class').css("display","none");
         resize();
 
     });
     $('a[data-action="equality"]').click(function (){
-        $("#leftPane").css('display','inline').removeAttr('class').addClass("span6");
-        $("#rightPane").css('display','inline').removeAttr('class').addClass("span6");
+        $("#leftPane").css('display','inline').removeAttr('class').addClass("col-md-6");
+        $("#rightPane").css('display','inline').removeAttr('class').addClass("col-md-6");
         resize();
     });
     $('a[data-action="rDom"]').click(function (){
-        $("#rightPane").css('display','inline').removeAttr('class').addClass("span12");
+        $("#rightPane").css('display','inline').removeAttr('class').addClass("col-md-12");
         $("#leftPane").removeAttr('class').css("display","none");
         resize();
     });

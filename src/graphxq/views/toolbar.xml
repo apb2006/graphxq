@@ -3,7 +3,7 @@
 	<div class="btn-group">
 		<button id="bnRefresh" class="btn btn-mini"
 		title="Resend SVG request" >
-			<i class="icon-refresh"></i>
+			<i class="glyphicon glyphicon-refresh"></i>
 			Redraw
 		</button>
 	
@@ -13,7 +13,7 @@
 		<a id="bnOpts" class="btn btn-mini" 
 		href="/graphxq/views/options.xml" data-target="#myModal" data-toggle="modal"
 		 title="Extra settings (not implemented yet)"  >
-			<i class="icon-gift"></i>
+			<i class="glyphicon glyphicon-gift"></i>
 			Options
 		</a>
 		
@@ -21,7 +21,7 @@
     <div class="btn-group">
 		<button id="bnclear" class="btn btn-mini"
             title="Set editor to default empty content" >
-			<i class="icon-remove"></i>
+			<i class="glyphicon glyphicon-remove"></i>
 			Clear
 		</button>
 	</div>
@@ -29,35 +29,35 @@
 	<div class="btn-group " data-toggle="buttons-radio">
 		<a rel="tooltip" title="Show only the editor" class="btn btn-mini"
 			data-action="lDom" data-placement="left">
-			<i class="icon icon-indent-left"></i>
+			<i class="glyphicon glyphicon-indent-left"></i>
 		</a>
 		<a rel="tooltip" title="Make both sides equal" class="btn btn-mini"
 			data-placement="left" data-action="equality">
-			<i class="icon icon-resize-horizontal"></i>
+			<i class="glyphicon glyphicon-resize-horizontal"></i>
 		</a>
 		<a rel="tooltip" title="Show only the result" class="btn btn-mini"
 			data-placement="left" data-action="rDom">
-			<i class="icon icon-indent-right"></i>
+			<i class="glyphicon glyphicon-indent-right"></i>
 		</a>
 	</div>
 	<a id="infotip" data-original-title="Status from Ajax" 
         class="btn btn-mini"  rel="popover" data-placement="bottom" data-content="nothing yet."
                title="Ajax request status">
-                 <i class="icon-info-sign" title="Request status, click for more.">></i>  
+                 <i class="glyphicon glyphicon-info-sign" title="Request status, click for more.">></i>  
   </a>
     <div class="btn-group pull-right">
     <button id="bnsvg" class="btn btn-mini" title="Show SVG standalone.">
-			<i class="icon-fullscreen"></i>
+			<i class="glyphicon glyphicon-fullscreen"></i>
 			SVG
 		</button>
 		<button id="bndn" class="btn btn-mini" title="Download SVG file">
-			<i class="icon-download-alt"></i>
+			<i class="glyphicon glyphicon-download-alt"></i>
 			download
 		</button>
     </div>
     <div class="btn-group pull-right">
     <button id="bnxml" class="btn btn-mini" data-toggle="button" title="Toggle SVG graphic and text">
-			<i class="icon-eye-close"></i>
+			<i class="glyphicon glyphicon-eye-close"></i>
 			SVG text
 		</button>
     </div>
