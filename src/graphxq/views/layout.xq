@@ -11,18 +11,15 @@ declare  variable $active-link external :=function($_){$_};
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="description" content="graphviz tool" />
 		<meta name="author" content="andy bunce" />
-		<link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.2.2/css/bootstrap.css" rel="stylesheet"
-			type="text/css" />
-
-
-		<link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.2.2/css/bootstrap-responsive.min.css"
-			rel="stylesheet" type="text/css" />
+		<link
+            href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.min.css"
+            rel="stylesheet" type="text/css" />
 		
 		<!-- Le fav and touch icons -->
 		<link rel="shortcut icon" href="/static/graphxq/graphxq2.png" />
 
-		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.1/jquery.min.js" type="text/javascript"></script>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.2.2/bootstrap.min.js" type="text/javascript"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js" type="text/javascript"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.8/ace.js" type="text/javascript" charset="utf-8"></script>
         <link href="/static/graphxq/app.css" rel="stylesheet" type="text/css" />
         <script src="/static/graphxq/app.js" type="text/javascript"></script>
@@ -40,27 +37,33 @@ declare  variable $active-link external :=function($_){$_};
         ]]></script>
 	</head>
 	<body class="{$bodyclass}">
-		<div class="navbar navbar-fixed-top navbar-inverse" data-dropdown="dropdown">
-			<div class="navbar-inner">
-				<div class="container">
-					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</a>
-					<a href="about" class="brand" title="Version 0.5.0">
-						<img src="/static/graphxq/graphxq2.png" />
-						graphXQ
-					</a>
-					
-					 <div class="nav-collapse collapse">
-            <ul class="nav">               
-                <li class="{$active-link('dot')}">
-                    <a href="dot" rel="tooltip" title="Define a graph in Dot notation" ><i class="icon-edit"></i> Dot</a>
+	<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+     
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li> <a href="/graphxq" class="brand" title="Version 0.5.0">
+                        <img src="/static/graphxq/graphxq2.png" />
+                        GraphXQ
+                    </a>
+        </li> 
+         <li class="{$active-link('dot')}">
+                    <a href="dot" rel="tooltip" title="Define a graph in Dot notation" ><i class="glyphicon glyphicon-edit"></i> Dot</a>
                 </li>
 
                 <li class="{$active-link('dotml')}">
-                    <a href="dotml"><i class="icon-align-center"
+                    <a href="dotml"><i class="glyphicon glyphicon-align-center"
                     title="Define a graph using DotML XML"
                     ></i> DotML</a>
                 </li>
@@ -68,26 +71,42 @@ declare  variable $active-link external :=function($_){$_};
                <li class="{$active-link('library')}">
                 <a href="library"
                 title="Examples"
-                ><i class="icon-book"></i> Library</a>
+                ><i class="glyphicon glyphicon-book"></i> Library</a>
               </li> 
 
-              <li class="{$active-link('api')}">
-                  <a href="api"  title="About the API"
-                  ><i class="icon-wrench"></i> API</a>
-              </li>
-      
-            <li class="{$active-link('ace')}">
-                  <a href="ace"  title="Xquery editor (just for fun)"
-                  ><i class="icon-wrench"></i> Ace</a>
-              </li>                  
-            </ul>         
             
-          </div>
-        
-        
-				</div>
-			</div>
-		</div>
+      </ul>
+      
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search"/>
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      
+      <ul class="nav navbar-nav navbar-right">
+          <li class="{$active-link('ace')}">
+                  <a href="ace"  title="Xquery editor (just for fun)"
+                  ><i class="glyphicon glyphicon-wrench"></i> Ace</a>
+              </li>    
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">About <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+             <li class="{$active-link('api')}">
+                  <a href="api"  title="About the API"
+                  ><i class="glyphicon glyphicon-wrench"></i> API</a>
+              </li> 
+            <li class="divider"></li>
+            <li><a href="#about">About</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
        <!-- Modal http://jsfiddle.net/matt_hwy1/hRq82/1/ -->
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">

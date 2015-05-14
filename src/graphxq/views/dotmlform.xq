@@ -2,12 +2,12 @@ declare variable $toolbar external :="{tooolbar}";
 declare variable $dotml external :="{dotml}";
 declare variable $svgwidget external :="{svg}";
 
-<div class="row-fluid">		
-	<div class="row-fluid" style="height:24px">
+<div class="row">		
+	<div class="row" style="height:24px">
 		{$toolbar}
 	</div>
-	<div class="row-fluid">
-		<div class="span6" id="leftPane" style="position:relative;height:100%">
+	<div class="row">
+		<div class="col-md-6" id="leftPane" style="position:relative;height:100%">
          <div id="dsrc" class="extend ace-container" >
             <div  id="acedata" class="ace " data-mode="xml" ></div>
             </div>
@@ -21,7 +21,7 @@ declare variable $svgwidget external :="{svg}";
   &lt;node id="test"/&gt;
 &lt;/graph&gt;</textarea>   
 		</div>
-		<div class="span6" id="rightPane">
+		<div class="col-md-6" id="rightPane">
 			<div id="svgdiv" class="extend"
 				style="width:100%;height:30em;border: 1px solid #E3E3E3;min-height:10em;">{$svgwidget}</div>
 			<div id="svgsrc" class="extend ace-container" style="display: none">

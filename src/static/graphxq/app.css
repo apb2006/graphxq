@@ -1,7 +1,5 @@
 /* app.css */
-body {
-    padding-top: 50px;
-}
+
 @media (max-width: 979px) {
     body {
       padding-top: 0;

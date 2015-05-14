@@ -9,7 +9,7 @@
     <p>Return SVG generated from dot syntax passed in the <code>data</code> parameter.</p>
     <h3>Syntax</h3>
     <p>
-        <code>restxq/graphxq/api/dot</code> <span class="label">application/x-www-form-urlencoded</span>
+        <code>/graphxq/api/dot</code> <span class="label">application/x-www-form-urlencoded</span>
     </p>
     <table class="table table-bordered">
         <thead>
@@ -40,7 +40,7 @@
     <p>Return SVG generated from dotML syntax passed in the <code>data</code> parameter.</p>
     <h3>Syntax</h3>
     <p>
-        <code>restxq/graphxq/api/dotml</code> <span class="label">application/x-www-form-urlencoded</span>
+        <code>/graphxq/api/dotml</code> <span class="label">application/x-www-form-urlencoded</span>
     </p>
     <table class="table table-bordered">
         <thead>
