@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <meta xmlns="http://basex.org/xquery/repo">
-    <description>Restxq interface for Graphviz for BaseX 8.0.</description>
+    <description>Restxq interface for Graphviz for BaseX.</description>
     <author>Andy Bunce</author>
     <website>https://github.com/apb2006/graphxq</website>
     <status>alpha</status>

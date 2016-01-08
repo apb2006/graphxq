@@ -4,10 +4,7 @@ declare variable $dot external :="{dot}";
 declare variable $svgwidget external :="{svg}";
 
 <div class="row">		
-
-	<div class="row" style="height:24px">
 		{$toolbar}
-	</div>
 	<div class="row">
 		<div class="col-md-6" id="leftPane">	
            <div id="dsrc" class="extend ace-container" >

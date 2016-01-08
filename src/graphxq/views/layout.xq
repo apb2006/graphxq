@@ -1,5 +1,7 @@
 declare  variable $body external :="{body}";
 declare  variable $title external :="{title}";
+(:~ version e.g "0.5" :)
+declare  variable $version external :="?todo";
 declare  variable $bodyclass external :="{$bodyclass}";
 declare  variable $active-link external :=function($_){$_};
 
@@ -53,7 +55,7 @@ declare  variable $active-link external :=function($_){$_};
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li> <a href="/graphxq" class="brand" title="Version 0.5.0">
+        <li> <a href="/graphxq" class="brand" title="Version {$version}">
                         <img src="/static/graphxq/graphxq2.png" />
                         GraphXQ
                     </a>
@@ -99,7 +101,7 @@ declare  variable $active-link external :=function($_){$_};
                   ><i class="glyphicon glyphicon-wrench"></i> API</a>
               </li> 
             <li class="divider"></li>
-            <li><a href="#about">About</a></li>
+            <li><a href="about">About</a></li>
           </ul>
         </li>
       </ul>

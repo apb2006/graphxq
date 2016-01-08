@@ -18,7 +18,7 @@ declare namespace restxq = 'http://exquery.org/ns/restxq';
 
 (:~ shared page wrapper :)
 declare variable $grxq:layout:=fn:resolve-uri("views/layout.xq");
-
+declare variable $grxq:version:=fn:doc("expath-pkg.xml")/*/@version;
 (:~
 : Home page for app
 :)
@@ -204,7 +204,8 @@ declare function render($template as xs:string,$locals){
     let $path:=request:path()
     let $default:=map{ "title": request:path(),
                        "active-link": active-link($path,?), (: *** FAILS IF request:path() :)
-                       "bodyclass": ""}
+                       "bodyclass": "",
+                       "version":$grxq:version}
     let $locals:=map:merge(($default,$locals))                   
     return txq:render(fn:resolve-uri($template),$locals,$grxq:layout)
 };       
