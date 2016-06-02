@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SVG v0.6</title>
+<link  href="svg-pan-zoom.css" rel="stylesheet" type="text/css" />
+<script src="http://d3js.org/d3.v3.min.js"></script>
+</head>
+<body>
+<button id="resetButtonQwpYZa">Reset</button>
+<button id="loadButton">Load</button>
+<div id="canvasQwpYZa" class="canvas"></div>
+
+<script src="svg-pan-zoom.js"></script>
+<script>
+var canvas = d3.demo.canvas().width(435).height(400);
+d3.select("#canvasQwpYZa").call(canvas);
+
+d3.select("#resetButtonQwpYZa").on("click", function() {
+    canvas.reset();
+});
+d3.select("#loadButton").on("click", function() {
+  d3.xml("/static/graphxq/sample.svg","image/svg+xml", function(xml) {
+    replaceItem(xml.documentElement);
+  });
+});
+d3.xml("http://www.billdwhite.com/wordpress/wp-content/images/butterfly.svg", "image/svg+xml", function(xml) {
+    addItem(xml.documentElement);
+});
+
+function addItem(item) {
+    canvas.addItem(d3.select(item));
+}
+function replaceItem(item) {
+  canvas.clear();
+  canvas.addItem(d3.select(item));
+  canvas.reset();
+}
+</script>
+</body>
+</html>

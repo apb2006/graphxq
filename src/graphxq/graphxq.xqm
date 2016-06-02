@@ -107,6 +107,13 @@ declare
 function api(){
     render("views/api.xml",map{"title": "API information"})
 };
+(:~ static d3test page :)
+declare 
+%restxq:GET %restxq:path("graphxq/testd3")
+%output:method("html") %output:version("5.0")
+function testd3(){
+    render("views/testd3.xml",map{"title": "d3 test"})
+};
 
 (:~ static ace page :)
 declare 

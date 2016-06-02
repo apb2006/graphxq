@@ -1,0 +1,31 @@
+<?xml-stylesheet type="text/css" href="default.css"?><svg xmlns="http://www.w3.org/2000/svg">
+   <defs>
+      <marker id="arrow" refX="5" refY="5" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" orient="auto">
+         <path class="edge" d="M0 0 10 5 0 10z"/>
+      </marker>
+   </defs>
+   <g class="node">
+      <rect x="0" y="-50" width="100" height="100"/>
+      <text text-anchor="middle" x="50" y="5">n1</text>
+   </g>
+   <g class="node">
+      <rect x="150" y="-50" width="100" height="100"/>
+      <text text-anchor="middle" x="200" y="5">n2</text>
+   </g>
+   <line class="edge" x1="100" y1="0" x2="150" y2="0" style="marker-end:url(#arrow)"/>
+   <g class="node">
+      <rect x="300" y="-50" width="100" height="100"/>
+      <text text-anchor="middle" x="350" y="5">n4</text>
+   </g>
+   <line class="edge" x1="250" y1="0" x2="300" y2="0" style="marker-end:url(#arrow)"/>
+   <g class="node">
+      <rect x="300" y="-200" width="100" height="100"/>
+      <text text-anchor="middle" x="350" y="-145">n4</text>
+   </g>
+   <line class="edge" x1="250" y1="0" x2="300" y2="-150" style="marker-end:url(#arrow)"/>
+   <g class="node">
+      <rect x="150" y="-200" width="100" height="100"/>
+      <text text-anchor="middle" x="200" y="-145">n3</text>
+   </g>
+   <line class="edge" x1="100" y1="0" x2="150" y2="-150" style="marker-end:url(#arrow)"/>
+</svg>

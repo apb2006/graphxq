@@ -20,11 +20,14 @@ declare  variable $active-link external :=function($_){$_};
 		<!-- Le fav and touch icons -->
 		<link rel="shortcut icon" href="/static/graphxq/graphxq2.png" />
 
-		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js" type="text/javascript"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" type="text/javascript"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.8/ace.js" type="text/javascript" charset="utf-8"></script>
-        <link href="/static/graphxq/app.css" rel="stylesheet" type="text/css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.3/ace.js" type="text/javascript" charset="utf-8"></script>
+         <link href="/static/graphxq/app.css" rel="stylesheet" type="text/css" />
+        <link href="/static/graphxq/svg-pan-zoom.css" rel="stylesheet" type="text/css" />
         <script src="/static/graphxq/app.js" type="text/javascript"></script>
+        <script src="http://d3js.org/d3.v3.js" charset="utf-8"></script>
+            <script src="/static/graphxq/svg-pan-zoom.js"></script>
     <script type="text/javascript"><![CDATA[
           var _gaq = _gaq || [];
           _gaq.push(['_setAccount', 'UA-34544921-1']);
@@ -95,7 +98,9 @@ declare  variable $active-link external :=function($_){$_};
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
+            <li>
+            <a href="testd3">D3 test</a>
+            </li>
              <li class="{$active-link('api')}">
                   <a href="api"  title="About the API"
                   ><i class="glyphicon glyphicon-wrench"></i> API</a>
@@ -123,9 +128,10 @@ declare  variable $active-link external :=function($_){$_};
     <button class="btn btn-primary">Save changes</button>
   </div>
 </div>
-		<div class="container-fluid">
+		<div class="container">
 				{$body}
 		</div>
 
 	</body>
+
 </html>

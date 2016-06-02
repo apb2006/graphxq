@@ -1,0 +1,36 @@
+<div class="row">	
+<div id="leftPane" class="col-md-6 extend">
+ <h1>d3 test</h1>
+    <button id="resetButtonQwpYZa">Reset</button>
+<button id="loadButton">Load</button>
+</div>
+<div id="rightPane" class="col-md-6 extend" style="background-color:red;">
+<div id="canvasQwpYZa" class="canvas" style="width:100%;height:100%;"></div>
+</div>	
+
+<script>
+var canvas = d3.demo.canvas();
+d3.select("#canvasQwpYZa").call(canvas);
+
+d3.select("#resetButtonQwpYZa").on("click", function() {{
+    canvas.reset();
+}});
+d3.select("#loadButton").on("click", function() {{
+  d3.xml("/static/graphxq/sample.svg","image/svg+xml", function(xml) {{
+    replaceItem(xml.documentElement);
+  }});
+}});
+d3.xml("http://www.billdwhite.com/wordpress/wp-content/images/butterfly.svg", "image/svg+xml", function(xml) {{
+    addItem(xml.documentElement);
+}});
+
+function addItem(item) {{
+    canvas.addItem(d3.select(item));
+}};
+function replaceItem(item) {{
+  canvas.clear();
+  canvas.addItem(d3.select(item));
+  canvas.reset();
+}};
+</script>
+</div>

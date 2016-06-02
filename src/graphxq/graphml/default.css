@@ -1,0 +1,10 @@
+.node > rect {
+  fill:silver;
+}
+.node > text {
+  font-size:24;
+  font-weight:bold;
+}
+.edge {
+  fill:black;
+}

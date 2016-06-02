@@ -46,6 +46,10 @@
                  <i class="glyphicon glyphicon-info-sign" title="Request status, click for more."></i>  
   </a>
     <div class="btn-group pull-right">
+    <button id="resetButtonQwpYZa" class="btn btn-mini btn-default" data-toggle="button" title="Zoom to fit">
+            <i class="glyphicon glyphicon-screenshot"></i>
+            Fit
+        </button>
     <button id="bnsvg" class="btn btn-mini btn-default" title="Show SVG standalone.">
 			<i class="glyphicon glyphicon-fullscreen"></i>
 			SVG
@@ -54,11 +58,11 @@
 			<i class="glyphicon glyphicon-download-alt"></i>
 			download
 		</button>
-    </div>
-    <div class="btn-group pull-right">
+   
     <button id="bnxml" class="btn btn-mini btn-default" data-toggle="button" title="Toggle SVG graphic and text">
 			<i class="glyphicon glyphicon-eye-close"></i>
 			SVG text
 		</button>
+		
     </div>
 </div>

@@ -23,9 +23,24 @@ node[shape=circle,style=filled,fillcolor=lightblue]
 
 }}</textarea>	
 		</div>
-		<div class="col-md-6" id="rightPane">
-			<div id="svgdiv" class="extend"
-				style="width:100%;height:30em;border: 1px solid #E3E3E3;min-height:10em;">{$svgwidget}</div>
+		<div class="col-md-6" id="rightPane" style="background-color:red;">
+			<div id="svgdiv" class="extend">
+			<div id="canvasQwpYZa" class="canvas" style="width:100%;height:100%;"></div>
+			<script>
+var canvas = d3.demo.canvas();
+d3.select("#canvasQwpYZa").call(canvas);
+
+d3.select("#resetButtonQwpYZa").on("click", function() {{
+    canvas.reset();
+}});
+
+function replaceItem(item) {{
+  canvas.clear();
+  canvas.addItem(d3.select(item));
+  canvas.reset();
+}};
+</script>
+			</div>	
              <div id="svgsrc" class="extend ace-container" style="display: none">
             <div  id="svgsrc2" class="ace " data-mode="svg" data-readonly="1">(no svg loaded)</div>
             </div>

@@ -87,7 +87,7 @@ function getsvg(){
                var data = oParser.parseFromString(str, "text/xml");
                 // http://stackoverflow.com/questions/3346106/accessing-a-dom-object-defined-in-an-external-svg-file
                 var n = document.importNode(data.documentElement,true);              
-                $("#gInsertSVG").empty().append(n);
+                replaceItem(n);
 				ace.edit("svgsrc2").setValue(str,1);
                 //ace.edit("svgsrc2").selection.clear();
 				$("#infotip").attr("data-content","SVG returned in: "+d +" ms.");

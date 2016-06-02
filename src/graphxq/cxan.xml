@@ -1,0 +1,11 @@
+<package xmlns="http://cxan.org/ns/package" id="graphxq">
+	<abstract>Network graphs using Graphviz and DotML</abstract>
+	<author id="abunce">Andy Bunce</author>
+	<maintainer id="abunce">Andy Bunce</maintainer>
+	<home>https://github.com/apb2006/graphxq</home>
+	<category id="apps">Applications</category>
+	<tag>basex</tag>
+	<tag>restxq</tag>
+	<tag>graph</tag>
+	<tag>svg</tag>
+</package>
