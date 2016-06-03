@@ -12,7 +12,7 @@
  <div class="fluid-row">
         <div class="span4">
           <h2>Client</h2>
- <p>The client side targets modern browsers with SVG support. It was tested against Firefox 15 and Chrome 21.
+ <p>The client side targets modern browsers with SVG support. It was tested against Firefox 46 and Chrome 50.
     </p>
     
     <p><a href="http://twitter.github.com/bootstrap/index.html"
@@ -26,14 +26,13 @@
        </div>
                <div class="span4">
           <h2>Server</h2>
-  <p>The server side is written entirely in XQuery. It uses the 
+  <p>The server side is written in XQuery. It uses the 
         <a href="http://basex.org" target="_blank">BaseX</a> implementation. <a
             href="http://docs.basex.org/wiki/RESTXQ" target="_blank">RestXQ</a>
         is used to map XQuery annotations to web server behavior.
     </p>
      <p> The graphviz <code>dot</code> executable is used to generate SVG from the DOT source.
-        The resultant SVG is viewed in an interface that provides pan and zoom functionality.
-        The SVG may also be viewed standalone or downloaded.</p>
+      </p>
     <p>This application includes an XSLT transform to convert <code>DotML</code> to 
     <code>dot</code> developed by Martin Loetzsch.
      <a href="http://www.martin-loetzsch.de/DOTML" target="_blank">DotML</a>
@@ -43,7 +42,7 @@
           <h2>Todo</h2>
  <p>The SVG pan and zoom has problems, especially in Firefox. In part this maybe due
 to firefox bugs</p>
-<p>For reference how the SVG <a href="/graphxq/viewbox/viewBox.svg">viewbox</a>
+<p>For reference how the SVG <a href="/static/graphxq/viewbox/viewBox.svg">viewbox</a>
 works. See also <a href="http://www.dotuscomus.com/svg/lib/library.html#autozoom" target="_blank">here</a> 
 for a better way?
 </p>
@@ -55,7 +54,7 @@ for a better way?
    <img style="position: absolute; top: 50px; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"/>
    </a>
       <footer>
-        <p>&#169; Andy Bunce 2013 -2015</p>
+        <p>&#169; Andy Bunce 2013 -2016</p>
         <ul class="quick-links">
     <!-- 
         <li><iframe class="github-btn"

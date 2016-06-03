@@ -23,7 +23,7 @@ node[shape=circle,style=filled,fillcolor=lightblue]
 
 }}</textarea>	
 		</div>
-		<div class="col-md-6" id="rightPane" style="background-color:red;">
+		<div class="col-md-6" id="rightPane" style="background-color:#F5ECCE;">
 			<div id="svgdiv" class="extend">
 			<div id="canvasQwpYZa" class="canvas" style="width:100%;height:100%;"></div>
 			<script>

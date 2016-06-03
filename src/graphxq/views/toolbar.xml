@@ -45,13 +45,21 @@
                title="Ajax request status">
                  <i class="glyphicon glyphicon-info-sign" title="Request status, click for more."></i>  
   </a>
-    <div class="btn-group pull-right">
+  <div class="pull-right">
+    <div class="btn-group ">
     <button id="resetButtonQwpYZa" class="btn btn-mini btn-default" data-toggle="button" title="Zoom to fit">
             <i class="glyphicon glyphicon-screenshot"></i>
-            Fit
         </button>
+      <button id="resetButtonQwpYZa" class="btn btn-mini btn-default" data-toggle="button" title="Zoom in">
+            <i class="glyphicon glyphicon-plus-sign"></i>
+        </button>
+         <button id="resetButtonQwpYZa" class="btn btn-mini btn-default" data-toggle="button" title="Zoom out">
+            <i class="glyphicon glyphicon-minus-sign"></i>
+        </button>
+        </div>
+     <div class="btn-group ">      
     <button id="bnsvg" class="btn btn-mini btn-default" title="Show SVG standalone.">
-			<i class="glyphicon glyphicon-fullscreen"></i>
+			<i class="glyphicon glyphicon-share"></i>
 			SVG
 		</button>
 		<button id="bndn" class="btn btn-mini btn-default" title="Download SVG file">
@@ -64,5 +72,6 @@
 			SVG text
 		</button>
 		
+    </div>
     </div>
 </div>

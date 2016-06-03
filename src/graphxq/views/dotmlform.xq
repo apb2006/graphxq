@@ -19,7 +19,7 @@ declare variable $svgwidget external :="{svg}";
   &lt;node id="test"/&gt;
 &lt;/graph&gt;</textarea>   
 		</div>
-		<div class="col-md-6" id="rightPane">
+		<div class="col-md-6" id="rightPane"  style="background-color:#F5ECCE;">
 			         <div id="svgdiv" class="extend">
             <div id="canvasQwpYZa" class="canvas" style="width:100%;height:100%;"></div>
             <script>
