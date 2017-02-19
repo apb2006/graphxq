@@ -23,21 +23,8 @@ declare variable $svgwidget external :="{svg}";
 			         <div id="svgdiv" class="extend">
             <div id="canvasQwpYZa" class="canvas" style="width:100%;height:100%;"></div>
             <script>
-var canvas = d3.demo.canvas();
-d3.select("#canvasQwpYZa").call(canvas);
-
-d3.select("#resetButtonQwpYZa").on("click", function() {{
-    canvas.reset();
-}});
-
-function addItem(item) {{
-    canvas.addItem(d3.select(item));
-}};
-function replaceItem(item) {{
-  canvas.clear();
-  canvas.addItem(d3.select(item));
-  canvas.reset();
-}};
+ var canvas = d3.graphxq.svgpan(d3.select("#canvasQwpYZa"));
+ d3.select("#resetButtonQwpYZa").on("click", canvas.resetted);
 </script>
             </div>  
 			<div id="svgsrc" class="extend ace-container" style="display: none">

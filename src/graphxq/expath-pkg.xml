@@ -1,9 +1,9 @@
 <package abbrev="graphxq" name="https://github.com/apb2006/graphxq"
-	version="0.7" spec="1.0" xmlns="http://expath.org/ns/pkg">
+	version="0.7.2" spec="1.0" xmlns="http://expath.org/ns/pkg">
 	<title>Graphxq</title>
-	<dependency name="twitter-bootstrap" version="3.3.1" />
+	<dependency name="twitter-bootstrap" version="3.3.6" />
 	<dependency name="svg-pan-zoom" version="3.2.8" />
 	<dependency name="jquery" version="2.0.2" />
 	<dependency name="ace" version="1.2.3" />
-	<dependency name="d3" version="3" />
+	<dependency name="d3" version="4" />
 </package>

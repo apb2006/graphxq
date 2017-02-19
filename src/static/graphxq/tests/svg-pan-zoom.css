@@ -34,14 +34,3 @@ html, body {
   xfilter: url(#minimapDropShadow_qwpyza);
   cursor: move;
 }
-.axis line{
-  stroke: cadetblue;
-}
-
-.axis path{
-  stroke: cadetblue;
-}
-
-.axis text{
-  fill: cadetblue;
-}  

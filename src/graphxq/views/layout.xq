@@ -14,20 +14,21 @@ declare  variable $active-link external :=function($_){$_};
 		<meta name="description" content="graphviz tool" />
 		<meta name="author" content="andy bunce" />
 		<link
-            href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.min.css"
+            href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css"
             rel="stylesheet" type="text/css" />
 		
 		<!-- Le fav and touch icons -->
 		<link rel="shortcut icon" href="/static/graphxq/graphxq2.png" />
 
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" type="text/javascript"></script>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.3/ace.js" type="text/javascript" charset="utf-8"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
+         <script src="http://d3js.org/d3.v4.js" charset="utf-8"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js" type="text/javascript" charset="utf-8"></script>
          <link href="/static/graphxq/app.css" rel="stylesheet" type="text/css" />
         <link href="/static/graphxq/svg-pan-zoom.css" rel="stylesheet" type="text/css" />
         <script src="/static/graphxq/app.js" type="text/javascript"></script>
-        <script src="http://d3js.org/d3.v3.js" charset="utf-8"></script>
-            <script src="/static/graphxq/svg-pan-zoom.js"></script>
+       
+            <script src="/static/graphxq/svg-pan-zoom2.js"></script>
     <script type="text/javascript"><![CDATA[
           var _gaq = _gaq || [];
           _gaq.push(['_setAccount', 'UA-34544921-1']);
@@ -82,14 +83,22 @@ declare  variable $active-link external :=function($_){$_};
             
       </ul>
       
-      <form class="navbar-form navbar-left" role="search">
+      <form class="navbar-form navbar-left" role="search"  action="search" method="get">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search"/>
+          <input name="q" type="text" class="form-control" placeholder="Search"/>
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
       
       <ul class="nav navbar-nav navbar-right">
+         <li >
+              <a id="bnOpts" class="btn btn-mini" 
+                href="/graphxq/views/options.xml" data-target="#myModal" data-toggle="modal"
+                 title="Extra settings (not implemented yet)"  >
+                    <i class="glyphicon glyphicon-gift"></i>
+                    Options
+                </a>
+        </li>
           <li class="{$active-link('ace')}">
                   <a href="ace"  title="Xquery editor (just for fun)"
                   ><i class="glyphicon glyphicon-wrench"></i> Ace</a>
@@ -97,7 +106,6 @@ declare  variable $active-link external :=function($_){$_};
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
             <li>
             <a href="testd3">D3 test</a>
             </li>
@@ -115,19 +123,23 @@ declare  variable $active-link external :=function($_){$_};
 </nav>
 
        <!-- Modal http://jsfiddle.net/matt_hwy1/hRq82/1/ -->
-<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Modal Test Header</h3>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        @TODO...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
   </div>
-  <div class="modal-body">
-    <p>One fine body…</p>
   </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <button class="btn btn-primary">Save changes</button>
-  </div>
-</div>
 		<div class="container">
 				{$body}
 		</div>

@@ -18,7 +18,7 @@ declare namespace restxq = 'http://exquery.org/ns/restxq';
 
 (:~ shared page wrapper :)
 declare variable $grxq:layout:=fn:resolve-uri("views/layout.xq");
-declare variable $grxq:version:=fn:doc("expath-pkg.xml")/*/@version;
+declare variable $grxq:version as xs:string:=fn:doc("expath-pkg.xml")/*/@version/fn:string();
 (:~
 : Home page for app
 :)
@@ -36,7 +36,20 @@ declare
 %restxq:GET %restxq:path("graphxq/about") 
 %output:method("html") %output:version("5.0")
 function about(){
-    render("views/about.xml",map{"title":"GraphXQ"})
+    render("views/about.xq",map{"title":"GraphXQ",
+                                 "version":$grxq:version})
+};
+
+(:~
+: about page for app
+:)
+declare 
+%restxq:GET %restxq:path("graphxq/search") 
+%output:method("html") %output:version("5.0")
+%restxq:form-param("q","{$q}")
+function search($q){
+    render("views/search.xq",map{"title":"GraphXQ search",
+                                 "q":$q})
 };
 
 (:~

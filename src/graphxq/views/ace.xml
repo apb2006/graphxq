@@ -30,12 +30,12 @@ declare function render($template as xs:string,$map as map(*)){{
     </div>
     </div>
     <div class="tab-pane" id="profile">
-     ...
+     profile...
      </div>
     <div class="tab-pane" id="messages">
-    ...</div>
+    messages...</div>
     <div class="tab-pane" id="settings">
-    ...</div>
+    settings...</div>
     </div>
 </div> 
   

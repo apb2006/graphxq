@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head id="head">
+<meta charset="utf-8">
+<title id="title">d3-v4zoom</title>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="graphviz tool">
+<meta name="author" content="andy bunce">
+<link
+	href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css">
+<link href="svg-pan-zoom.css" rel="stylesheet" type="text/css">
+<style>
+.axis path {
+	display: none;
+}
+
+.axis line {
+	stroke-opacity: 0.3;
+	shape-rendering: crispEdges;
+}
+
+.view {
+	fill: url(#gradient);
+	stroke: #000;
+}
+
+.buttons {
+	position: absolute;
+	right: 30px;
+	top: 30px;
+}
+</style>
+<script src="http://d3js.org/d3.v4.js" charset="utf-8"></script>
+
+<head>
+<body>
+  <div class="row">       
+    
+ </div>  
+    <div class="row">
+        <div class="col-md-6" id="leftPane"> Left </div>
+	    <div class="col-md-6" >
+		     <div class="buttons">
+		        <button class="reset">Reset</button>
+		        <button class="load">Load</button>
+	          </div>
+	      <div id="canvasQwpYZa" class="canvas" style="width: 800px; height: 500px;"></div>
+	     </div>
+	</div>
+<script src="svg-pan-zoom2.js" charset="utf-8"></script>
+<script >
+var canvas = d3.graphxq.svgpan(d3.select("#canvasQwpYZa"));
+</script>	 
+</body>
+</html>

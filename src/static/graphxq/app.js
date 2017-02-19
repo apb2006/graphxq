@@ -28,7 +28,7 @@ $(document).ready(function(){
 });
 function setupEdit(){
     $("#infotip").popover({"html":true,
-    	  template: '<div class="popover popwidth"><div class="arrow"></div><div class="popover-inner popwidth" ><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>'
+    	  template: '<div class="popover popwidth"><div class="arrow"></div><div class="popover-inner " ><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>'
     });
     // toolbar buttons
     $('a[data-action="lDom"]').click(function (){
@@ -87,10 +87,11 @@ function getsvg(){
                var data = oParser.parseFromString(str, "text/xml");
                 // http://stackoverflow.com/questions/3346106/accessing-a-dom-object-defined-in-an-external-svg-file
                 var n = document.importNode(data.documentElement,true);              
-                replaceItem(n);
+               // replaceItem(n);
+                if(canvas)canvas.setsvg(n);
 				ace.edit("svgsrc2").setValue(str,1);
                 //ace.edit("svgsrc2").selection.clear();
-				$("#infotip").attr("data-content","SVG returned in: "+d +" ms.");
+				$("#infotip").attr("data-content","<span>SVG returned in: "+d +" ms.</span>");
               },
  			 error:function(jqXHR, textStatus, errorThrown){
  				console.log("ajax error: "+textStatus + jqXHR.responseText);
