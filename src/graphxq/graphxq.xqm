@@ -7,8 +7,8 @@
 module namespace grxq = 'apb.graphviz.web';
 declare default function namespace 'apb.graphviz.web'; 
 
-import module namespace gr = 'apb.graphviz' at "graphviz.xqm";
-import module namespace dotml = 'http://www.martin-loetzsch.de/DOTML' at "dotml.xqm";
+import module namespace gr = 'expkg-zone58:image.graphviz' ;
+import module namespace dotml = 'http://www.martin-loetzsch.de/DOTML' ;
 import module namespace dotui = 'apb.graphxq.dotui' at "dotui.xqm";
 import module namespace txq = 'quodatum.txq' at "lib/txq.xqm";
 import module namespace request = "http://exquery.org/ns/request";
@@ -165,7 +165,7 @@ declare
 function api-dotml($dotml,$dl ) {
  let $dotml:=fn:trace($dotml,"dot: ")
  let $dotml:=fn:parse-xml($dotml)
- let $x:=dotml:generate($dotml)
+ let $x:=dotml:to-dot($dotml)
  let $svg:=dot2svg($x)
  let $fname:=if($dl)then "dotml.svg" else ()
  return (headers($fname),$svg)  
@@ -206,8 +206,8 @@ declare function headers($attachment){
             
 (:~ Generate svg from dot :)
 declare %private function dot2svg($dot as xs:string) as node(){
-    let $svgx:=gr:dot($dot,())
-    return   gr:autosize($svgx) 
+    let $svgx:=gr:to-svg($dot,())
+    return   gr:autosize($svgx/*) 
 };                     
 
 (:~ css class to highlight current page :)
