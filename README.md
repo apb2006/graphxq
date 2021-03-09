@@ -1,5 +1,5 @@
 # graphxq 
-An interface to Graphviz for BaseX 8.0
+An interface to Graphviz for BaseX 8.0.
 
 ## Install
 copy the contents of the `src` folder to your `webapp` folder
